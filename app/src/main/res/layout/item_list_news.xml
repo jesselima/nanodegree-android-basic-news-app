@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/book_item_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp">
+
+    <TextView
+        android:id="@+id/text_view_web_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sudanese teenager who killed rapist husband appeals death sentence"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_16"/>
+
+    <TextView
+        android:id="@+id/text_view_publication_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-05-24T17:12:03Z"
+        android:textSize="@dimen/text_size_16"/>
+
+    <TextView
+        android:id="@+id/text_view_pillar_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="News"
+        android:textSize="@dimen/text_size_16"/>
+
+    <TextView
+        android:id="@+id/text_view_section_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Global development"
+        android:textSize="@dimen/text_size_16"/>
+
+
+
+
+
+</LinearLayout>
