@@ -13,7 +13,7 @@ import com.udacity.newsapp.fragments.NewsFragment;
  * Created by jesse on 22/04/18.
  * This is a part of the project TourGuide.
  */
-public class NewsFragmentPageAdapter extends FragmentPagerAdapter{
+public class PageAdapter extends FragmentPagerAdapter{
 
     /** Context of the app */
     private Context mContext;
@@ -21,13 +21,13 @@ public class NewsFragmentPageAdapter extends FragmentPagerAdapter{
     private static final Integer PAGE_NUMBER = 6;
 
     /**
-     * Create a new {@link NewsFragmentPageAdapter} object.
+     * Create a new {@link PageAdapter} object.
      *
      * @param context is the context of the app
      * @param fragmentManager is the fragment manager that will keep each fragment's state in the adapter
      *           across swipes.
      */
-    public NewsFragmentPageAdapter(Context context, FragmentManager fragmentManager){
+    public PageAdapter(Context context, FragmentManager fragmentManager){
         super(fragmentManager);
         mContext = context;
     }
