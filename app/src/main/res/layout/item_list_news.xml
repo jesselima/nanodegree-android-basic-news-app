@@ -7,46 +7,32 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_16"
-        android:layout_marginRight="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_8"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="#E6E6E6"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="2dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/padding_8">
 
-
             <TextView
                 android:id="@+id/text_view_web_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sudanese teenager who killed rapist husband appeals death sentence"
+                tools:text="Sudanese teenager who killed rapist husband appeals death sentence"
                 android:textSize="@dimen/text_size_16"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/text_view_publication_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sun 27 May 2018 07.00 BST"
+                tools:text="Sun 27 May 2018 07.00 BST"
                 android:textSize="@dimen/text_size_16"/>
             <TextView
                 android:id="@+id/text_view_section_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Global development"
+                tools:text="Global development"
                 android:textSize="@dimen/text_size_16"/>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+
 
 </LinearLayout>

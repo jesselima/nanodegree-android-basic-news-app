@@ -10,8 +10,23 @@
     <string name="tab_tile_tech_news">Tech</string>
     <string name="tab_tile_business_news">Business</string>
     <string name="tab_tile_environment_news">Environment</string>
-    <string name="tab_tile_obituaries_news">Obituaries</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unknown_date">Unknown date</string>
 </resources>
+
+<!--
+
+    <string name="tab_tile_top_news">Top 50</string>
+    <string name="tab_tile_world_news">World</string>   OK
+    <string name="tab_tile_uk_news">UK</string>
+    <string name="tab_tile_science_news">Science</string>
+    <string name="tab_tile_cities_news">Cities</string>
+    <string name="tab_tile_global_development_news">Global</string>
+    <string name="tab_tile_football_news">Football</string>
+    <string name="tab_tile_tech_news">Tech</string>         OK
+    <string name="tab_tile_business_news">Business</string> OK
+    <string name="tab_tile_environment_news">Environment</string>
+
+-->

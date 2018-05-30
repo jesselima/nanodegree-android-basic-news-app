@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorAlpha">#00ffffff</color>
     <color name="colorCardBackground">#9ed2f7</color>
     <color name="colorCardBackgroundTint">@android:color/holo_blue_bright</color>
 </resources>

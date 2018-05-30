@@ -158,9 +158,12 @@ public final class QueryUtils {
 
         try {
             // Create a JSONObject from the JSON response string
-            JSONObject rootJsonResponseObject = new JSONObject(newsJSON);
+            JSONObject rootJsonObject = new JSONObject(newsJSON);
+
+            JSONObject responseObject = rootJsonObject.getJSONObject("response");
+
             // Create a JSONArray and put the array of News (results) inside it.
-            JSONArray newsArray = rootJsonResponseObject.getJSONArray("results");
+            JSONArray newsArray = responseObject.getJSONArray("results");
 
             // For each position in the newsArray (inside the JSONArray object)
             // extract the JSON data from such position in the array and put the data into a new News class object.
@@ -202,7 +205,7 @@ public final class QueryUtils {
                 }
 
                 String pillarName = "";
-                if (currentNew.has("XX")) {
+                if (currentNew.has("pillarName")) {
                     pillarName = currentNew.getString("pillarName");
                 }
 
