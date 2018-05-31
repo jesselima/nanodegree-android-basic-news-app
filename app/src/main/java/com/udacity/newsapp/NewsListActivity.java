@@ -139,7 +139,7 @@ public class NewsListActivity extends AppCompatActivity
 
     }
 
-    /* Methods fir LoaderCallbacks<List<News>> */
+    /* Methods for LoaderCallbacks<List<News>> */
 
     /**
      * Restart the loader.
@@ -173,6 +173,7 @@ public class NewsListActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("page", page);
         uriBuilder.appendQueryParameter("page-size", pageSize);
         uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("api-key", API_KEY);
 
         Log.v("Requested URL: ", uriBuilder.toString());

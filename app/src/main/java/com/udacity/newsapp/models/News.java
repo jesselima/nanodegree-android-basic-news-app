@@ -14,11 +14,12 @@ public class News {
     private String webURL;
     private String apiURL;
     private String pillarName;
+    private String contributors;
 
     public News() {
     }
 
-    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String pillarName) {
+    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String pillarName, String contributors) {
         this.id = id;
         this.type = type;
         this.sectionName = sectionName;
@@ -27,6 +28,7 @@ public class News {
         this.webURL = webURL;
         this.webURL = apiURL;
         this.pillarName = pillarName;
+        this.contributors = contributors;
     }
 
     public String getId() {
@@ -91,5 +93,13 @@ public class News {
 
     public void setPillarName(String pillarName) {
         this.pillarName = pillarName;
+    }
+
+    public String getContributors() {
+        return contributors;
+    }
+
+    public void setContributors(String contributors) {
+        this.contributors = contributors;
     }
 }

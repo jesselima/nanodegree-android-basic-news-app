@@ -62,29 +62,30 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         News currentNews = getItem(position);
 
-        TextView webTitle = listItemView.findViewById(R.id.text_view_web_title);
-        webTitle.setText(currentNews.getWebTitle());
+            TextView webTitle = listItemView.findViewById(R.id.text_view_web_title);
+            webTitle.setText(currentNews.getWebTitle());
 
+            TextView webPublicationDate = listItemView.findViewById(R.id.text_view_publication_date);
+            String dateString = currentNews.getWebPublicationDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date date;
+            try {
+                date = dateFormat.parse(dateString);
+                webPublicationDate.setText(String.valueOf(formatDate(date)));
+            } catch (ParseException e) {
+                webPublicationDate.setText(R.string.unknown_date);
+                e.printStackTrace();
+            }
 
+            TextView sectionName = listItemView.findViewById(R.id.text_view_section_name);
+            sectionName.setText(currentNews.getSectionName());
 
-        TextView webPublicationDate = listItemView.findViewById(R.id.text_view_publication_date);
-        String dateString = currentNews.getWebPublicationDate();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Date date;
-        try {
-            date = dateFormat.parse(dateString);
-            webPublicationDate.setText(String.valueOf(formatDate(date)));
-        } catch (ParseException e) {
-            webPublicationDate.setText(R.string.unknown_date);
-            e.printStackTrace();
-        }
+            TextView contributors = listItemView.findViewById(R.id.text_view_contributor);
+            contributors.setText(currentNews.getContributors());
 
-        TextView sectionName = listItemView.findViewById(R.id.text_view_section_name);
-        sectionName.setText(currentNews.getSectionName());
-
-        String webURL = currentNews.getWebURL();
-        String apiURL = currentNews.getApiURL();
-        String pillarName = currentNews.getPillarName();
+            String webURL = currentNews.getWebURL();
+            String apiURL = currentNews.getApiURL();
+            String pillarName = currentNews.getPillarName();
 
         //TODO: Load news image and author(s) name(s).
 

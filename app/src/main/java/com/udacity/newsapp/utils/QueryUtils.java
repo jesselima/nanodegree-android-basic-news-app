@@ -163,14 +163,15 @@ public final class QueryUtils {
             JSONObject responseObject = rootJsonObject.getJSONObject("response");
 
             // Create a JSONArray and put the array of News (results) inside it.
-            JSONArray newsArray = responseObject.getJSONArray("results");
+            JSONArray resultsArray = responseObject.getJSONArray("results");
+
 
             // For each position in the newsArray (inside the JSONArray object)
             // extract the JSON data from such position in the array and put the data into a new News class object.
-            for (int i = 0; i < newsArray.length(); i++) {
+            for (int i = 0; i < resultsArray.length(); i++) {
 
                 // Get a single News object in the newsArray (in within the list of News)
-                JSONObject currentNew = newsArray.getJSONObject(i);
+                JSONObject currentNew = resultsArray.getJSONObject(i);
 
                 String id = currentNew.getString("id");
 
@@ -209,8 +210,21 @@ public final class QueryUtils {
                     pillarName = currentNew.getString("pillarName");
                 }
 
+                // Inside each News item, I access its array called "tags".
+                JSONArray tagsArrayCurrentNews = currentNew.getJSONArray("tags");
+                StringBuilder authors = new StringBuilder();
+                if (tagsArrayCurrentNews.length() > 0) {
+                    for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
+                        JSONObject webTitleContributorObject = tagsArrayCurrentNews.getJSONObject(t);
+                        String currentContributor = webTitleContributorObject.getString("webTitle");
+                        authors.append(currentContributor);
+                    }
+                }
+                String contributors = String.valueOf(authors);
+
+
                 // Instantiate a News class object and add the JSON data as inputs parameters.
-                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, pillarName);
+                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, pillarName, contributors);
                 newsList.add(newsItem);
             }
 
