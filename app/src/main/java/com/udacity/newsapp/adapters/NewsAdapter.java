@@ -86,7 +86,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         String apiURL = currentNews.getApiURL();
         String pillarName = currentNews.getPillarName();
 
-        //TODO: Load news image.
+        //TODO: Load news image and author(s) name(s).
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
