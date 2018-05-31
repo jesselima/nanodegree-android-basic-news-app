@@ -79,6 +79,34 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
             TextView sectionName = listItemView.findViewById(R.id.text_view_section_name);
             sectionName.setText(currentNews.getSectionName());
+            if (currentNews.getSectionName().equals("Business")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagBusiness));
+            }
+            if (currentNews.getSectionName().equals("Sport")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagSport));
+            }
+            if (currentNews.getSectionName().equals("Media")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagMedia));
+            }
+            if (currentNews.getSectionName().equals("Books")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagBooks));
+            }
+            if (currentNews.getSectionName().equals("Politics")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagPolitics));
+            }
+            if (currentNews.getSectionName().equals("Culture")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagCulture));
+            }
+            if (currentNews.getSectionName().equals("UK News")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagUkNews));
+            }
+            if (currentNews.getSectionName().equals("US News")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagUsNews));
+            }
+            if (currentNews.getSectionName().equals("Society")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagSociety));
+            }
+
 
             TextView contributors = listItemView.findViewById(R.id.text_view_contributor);
             contributors.setText(currentNews.getContributors());

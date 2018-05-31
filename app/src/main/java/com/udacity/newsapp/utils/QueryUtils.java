@@ -171,52 +171,63 @@ public final class QueryUtils {
             for (int i = 0; i < resultsArray.length(); i++) {
 
                 // Get a single News object in the newsArray (in within the list of News)
-                JSONObject currentNew = resultsArray.getJSONObject(i);
+                JSONObject currentNewsResult = resultsArray.getJSONObject(i);
 
-                String id = currentNew.getString("id");
+                String id = currentNewsResult.getString("id");
 
                 String type = "";
-                if (currentNew.has("type")) {
-                    type = currentNew.getString("type");
+                if (currentNewsResult.has("type")) {
+                    type = currentNewsResult.getString("type");
                 }
 
                 String sectionName = "";
-                if (currentNew.has("sectionName")) {
-                    sectionName = currentNew.getString("sectionName");
+                if (currentNewsResult.has("sectionName")) {
+                    sectionName = currentNewsResult.getString("sectionName");
                 }
 
                 String webPublicationDate = "";
-                if (currentNew.has("webPublicationDate")) {
-                    webPublicationDate = currentNew.getString("webPublicationDate");
+                if (currentNewsResult.has("webPublicationDate")) {
+                    webPublicationDate = currentNewsResult.getString("webPublicationDate");
                 }
 
                 String webTitle = "";
-                if (currentNew.has("webTitle")) {
-                    webTitle = currentNew.getString("webTitle");
+                if (currentNewsResult.has("webTitle")) {
+                    webTitle = currentNewsResult.getString("webTitle");
                 }
 
                 String webURL = "";
-                if (currentNew.has("webURL")) {
-                    webURL = currentNew.getString("webURL");
+                if (currentNewsResult.has("webURL")) {
+                    webURL = currentNewsResult.getString("webURL");
                 }
 
                 String apiURL = "";
-                if (currentNew.has("apiURL")) {
-                    apiURL = currentNew.getString("apiURL");
+                if (currentNewsResult.has("apiURL")) {
+                    apiURL = currentNewsResult.getString("apiURL");
                 }
 
                 String pillarName = "";
-                if (currentNew.has("pillarName")) {
-                    pillarName = currentNew.getString("pillarName");
+                if (currentNewsResult.has("pillarName")) {
+                    pillarName = currentNewsResult.getString("pillarName");
                 }
 
                 // Inside each News item, I access its array called "tags".
-                JSONArray tagsArrayCurrentNews = currentNew.getJSONArray("tags");
+                JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
                 StringBuilder authors = new StringBuilder();
+                String currentContributor = "By: ";
+
                 if (tagsArrayCurrentNews.length() > 0) {
                     for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
                         JSONObject webTitleContributorObject = tagsArrayCurrentNews.getJSONObject(t);
-                        String currentContributor = webTitleContributorObject.getString("webTitle");
+                        currentContributor += webTitleContributorObject.getString("webTitle");
+                            if (tagsArrayCurrentNews.length() == 0){
+                                currentContributor += ".";
+                            }
+                            if (tagsArrayCurrentNews.length() > 1){
+                                currentContributor += ", ";
+                            }
+                            if (tagsArrayCurrentNews.length() == 1){
+                                currentContributor += ".";
+                            }
                         authors.append(currentContributor);
                     }
                 }
