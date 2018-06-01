@@ -116,8 +116,8 @@ public class NewsAdapter extends ArrayAdapter<News> {
             TextView contributors = listItemView.findViewById(R.id.text_view_contributor);
             contributors.setText(currentNews.getContributors());
 
-            imageView = listItemView.findViewById(R.id.image_view_news_item);
-            new DownloadImageTask(imageView).execute(currentNews.getThumbnailURL());
+//            imageView = listItemView.findViewById(R.id.image_view_news_item);
+//            new DownloadImageTask(imageView).execute(currentNews.getThumbnailURL());
 
             String webURL = currentNews.getWebURL();
             String apiURL = currentNews.getApiURL();
@@ -137,44 +137,45 @@ public class NewsAdapter extends ArrayAdapter<News> {
         return dateFormat.format(dateObject);
     }
 
+
     /**
      * Download the newsItem image data in a AsyncTask
      * When the Download is finished update the UI with the image.
      */
-    public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
-        private ImageView imageView;
-
-        private DownloadImageTask(ImageView imageView) {
-            this.imageView = imageView;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urlDisplay = urls[0];
-            Bitmap image = null;
-            try {
-                InputStream inputStream = new java.net.URL(urlDisplay).openStream();
-                image = BitmapFactory.decodeStream(inputStream);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return image;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            updateImageOnUI(result);
-        }
-    }
+//    public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+//
+//        private ImageView imageView;
+//
+//        private DownloadImageTask(ImageView imageView) {
+//            this.imageView = imageView;
+//        }
+//
+//        protected Bitmap doInBackground(String... urls) {
+//            String urlDisplay = urls[0];
+//            Bitmap image = null;
+//            try {
+//                InputStream inputStream = new java.net.URL(urlDisplay).openStream();
+//                image = BitmapFactory.decodeStream(inputStream);
+//            } catch (Exception e) {
+//                Log.e("Error", e.getMessage());
+//                e.printStackTrace();
+//            }
+//            return image;
+//        }
+//
+//        protected void onPostExecute(Bitmap result) {
+//            updateImageOnUI(result);
+//        }
+//    }
 
     /**
      * When call update the Book cover image on the UI. It's called after the AsyncTask DownloadImageTask is completed.
      * @param result
      */
-    private void updateImageOnUI(Bitmap result) {
-        imageView.setImageBitmap(result);
-    }
-
+//    private void updateImageOnUI(Bitmap result) {
+//        imageView.setImageBitmap(result);
+//    }
 
 
 }

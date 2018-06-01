@@ -234,6 +234,7 @@ public final class QueryUtils {
                 }
                 String contributors = String.valueOf(authors);
 
+                // Extract the news URL image.
                 JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
                 String thumbnailURL = currentNewsFields.getString("thumbnail");
 

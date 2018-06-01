@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">News App</string>
     <!-- News Categories -->
-    <string name="tab_tile_top_news">Top 50</string>
+    <string name="tab_tile_top_news">News</string>
     <string name="tab_tile_world_news">World</string>
     <string name="tab_tile_uk_news">UK News</string>
     <string name="tab_tile_science_news">Science</string>

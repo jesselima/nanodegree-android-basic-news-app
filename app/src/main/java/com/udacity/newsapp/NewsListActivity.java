@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import com.udacity.newsapp.adapters.NewsAdapter;
 import com.udacity.newsapp.fragments.CategoriesFragment;
-import com.udacity.newsapp.fragments.MainFragmentPagerAdapter;
 import com.udacity.newsapp.fragments.NewsFragment;
 import com.udacity.newsapp.fragments.SearchFragment;
 import com.udacity.newsapp.loaders.NewsLoader;
@@ -55,53 +54,26 @@ public class NewsListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
 
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-//                .replace(R.id.container, new NewsFragment())
-//                .commit();
-
-        final NewsFragment newsFragment = new NewsFragment();
-        final CategoriesFragment categoriesFragment = new CategoriesFragment();
-        final SearchFragment searchFragment = new SearchFragment();
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.button_nav_top_50:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                                .replace(R.id.container, newsFragment)
-                                .commit();
+                        Intent intentNews = new Intent(getApplicationContext(), NewsListActivity.class);
+                        startActivity(intentNews);
                         break;
                     case R.id.button_nav_categories:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                                .replace(R.id.container, categoriesFragment)
-                                .commit();
+                        Intent intentCategories = new Intent(getApplicationContext(), CategoriesActivity.class);
+                        startActivity(intentCategories);
                         break;
                     case R.id.button_nav_search:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                                .replace(R.id.container, searchFragment)
-                                .commit();
+                        Intent intentSearch = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intentSearch);
                         break;
-                    case R.id.button_nav_refresh:
-                        restartLoaderNews();
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                                .remove(newsFragment)
-                                .remove(categoriesFragment)
-                                .remove(searchFragment)
-                                .commit();
-                        Toast.makeText(NewsListActivity.this, "Refreshing the list", Toast.LENGTH_SHORT).show();
-                        break;
+//                    case R.id.button_nav_refresh:
+//                        restartLoaderNews();
+//                        break;
                 }
                 return true;
             }
@@ -141,6 +113,14 @@ public class NewsListActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), NewsDetailsActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
+            }
+        });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restartLoaderNews();
             }
         });
 

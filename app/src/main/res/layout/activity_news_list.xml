@@ -18,15 +18,17 @@
         android:paddingBottom="4dp"
         android:layout_marginBottom="50dp"/>
 
-    <android.support.design.widget.BottomNavigationView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/colorWhite"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation_items" />
+        android:src="@drawable/ic_refresh"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_marginBottom="60dp"/>
+
+    <include layout="@layout/botton_nav"/>
 
     <TextView
         android:id="@+id/no_news_found_text"

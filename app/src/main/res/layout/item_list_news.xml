@@ -10,15 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_16"
-            android:layout_marginStart="@dimen/margin_4"
             android:orientation="vertical">
 
             <ImageView
@@ -27,8 +25,8 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="@dimen/margin_4"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 tools:src="@drawable/dummy_image"/>
-
         </LinearLayout>
 
 
@@ -43,55 +41,57 @@
                 android:id="@+id/text_view_web_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Sudanese teenager who killed rapist husband appeals death sentence"
                 android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:text="Sudanese teenager who killed rapist husband appeals death sentence"/>
 
             <TextView
                 android:id="@+id/text_view_publication_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Sun 27 May 2018 07.00 BST"
-                android:textSize="@dimen/text_size_12"/>
+                android:textSize="@dimen/text_size_12"
+                tools:text="Sun 27 May 2018 07.00 BST"/>
             <TextView
                 android:id="@+id/text_view_section_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Global development"
-                android:textStyle="bold"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_size_12"/>
+                android:textSize="@dimen/text_size_12"
+                android:textStyle="bold"
+                tools:text="Global development"/>
 
             <TextView
                 android:id="@+id/text_view_contributor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Authors"
                 android:maxLines="1"
+                android:textSize="12sp"
                 android:textStyle="italic"
-                android:textSize="12sp"/>
+                tools:text="Authors"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right">
+                android:layout_marginTop="@dimen/margin_4"
+                android:gravity="end"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/baseline_public_24"
-                    android:layout_marginEnd="5dp"/>
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/baseline_public_24"/>
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
                     android:src="@drawable/baseline_mobile_screen_share_24"/>
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/baseline_share_24"
-                    android:layout_marginEnd="5dp"/>
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/baseline_share_24"/>
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
