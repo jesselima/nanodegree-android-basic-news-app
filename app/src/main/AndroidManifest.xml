@@ -22,7 +22,8 @@
         <activity
             android:name=".NewsDetailsActivity"
             android:label="News Details"
-            android:parentActivityName=".NewsListActivity"/>
+            android:parentActivityName=".NewsListActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

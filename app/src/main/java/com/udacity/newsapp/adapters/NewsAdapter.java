@@ -1,5 +1,8 @@
 package com.udacity.newsapp.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -12,13 +15,14 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.RatingBar;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.udacity.newsapp.R;
 import com.udacity.newsapp.models.News;
 
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +36,8 @@ import java.util.List;
  * to be displayed to the user.
  */
 public class NewsAdapter extends ArrayAdapter<News> {
+
+    ImageView imageView;
 
     /**
      * Constructs a new {@link NewsAdapter}.
@@ -107,15 +113,15 @@ public class NewsAdapter extends ArrayAdapter<News> {
                 sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagSociety));
             }
 
-
             TextView contributors = listItemView.findViewById(R.id.text_view_contributor);
             contributors.setText(currentNews.getContributors());
+
+            imageView = listItemView.findViewById(R.id.image_view_news_item);
+            new DownloadImageTask(imageView).execute(currentNews.getThumbnailURL());
 
             String webURL = currentNews.getWebURL();
             String apiURL = currentNews.getApiURL();
             String pillarName = currentNews.getPillarName();
-
-        //TODO: Load news image and author(s) name(s).
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
@@ -128,9 +134,47 @@ public class NewsAdapter extends ArrayAdapter<News> {
      */
     private String formatDate(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm LLL dd, yyyy");
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
         return dateFormat.format(dateObject);
     }
+
+    /**
+     * Download the newsItem image data in a AsyncTask
+     * When the Download is finished update the UI with the image.
+     */
+    public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        private ImageView imageView;
+
+        private DownloadImageTask(ImageView imageView) {
+            this.imageView = imageView;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urlDisplay = urls[0];
+            Bitmap image = null;
+            try {
+                InputStream inputStream = new java.net.URL(urlDisplay).openStream();
+                image = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return image;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            updateImageOnUI(result);
+        }
+    }
+
+    /**
+     * When call update the Book cover image on the UI. It's called after the AsyncTask DownloadImageTask is completed.
+     * @param result
+     */
+    private void updateImageOnUI(Bitmap result) {
+        imageView.setImageBitmap(result);
+    }
+
 
 
 }

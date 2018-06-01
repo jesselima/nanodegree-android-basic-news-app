@@ -42,7 +42,7 @@ public class NewsListActivity extends AppCompatActivity
     private static final int NEWS_LOADER_ID = 1;
     private String sectionId = "news";
     private String page = "1";
-    private String pageSize = "50";
+    private String pageSize = "20";
     private String orderBy = "newest";
     private boolean searchBySectionId = false;
 
@@ -61,38 +61,45 @@ public class NewsListActivity extends AppCompatActivity
 //                .replace(R.id.container, new NewsFragment())
 //                .commit();
 
+        final NewsFragment newsFragment = new NewsFragment();
+        final CategoriesFragment categoriesFragment = new CategoriesFragment();
+        final SearchFragment searchFragment = new SearchFragment();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.button_nav_top_50:
-                        Toast.makeText(NewsListActivity.this, "Read the top 50 newest", Toast.LENGTH_SHORT).show();
-//                        getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-//                                .replace(R.id.container, new NewsFragment())
-//                                .commit();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                                .replace(R.id.container, newsFragment)
+                                .commit();
                         break;
                     case R.id.button_nav_categories:
-                        Toast.makeText(NewsListActivity.this, "Select a desired category", Toast.LENGTH_SHORT).show();
-//                        getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-//                                .replace(R.id.container, new CategoriesFragment())
-//                                .commit();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                                .replace(R.id.container, categoriesFragment)
+                                .commit();
                         break;
                     case R.id.button_nav_search:
-                        Toast.makeText(NewsListActivity.this, "Advanced search", Toast.LENGTH_SHORT).show();
-//                        getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-//                                .replace(R.id.container, new SearchFragment())
-//                                .commit();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                                .replace(R.id.container, searchFragment)
+                                .commit();
                         break;
                     case R.id.button_nav_refresh:
                         restartLoaderNews();
-
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                                .remove(newsFragment)
+                                .remove(categoriesFragment)
+                                .remove(searchFragment)
+                                .commit();
                         Toast.makeText(NewsListActivity.this, "Refreshing the list", Toast.LENGTH_SHORT).show();
                         break;
                 }

@@ -1,5 +1,7 @@
 package com.udacity.newsapp.models;
 
+import android.widget.ImageView;
+
 /**
  * Created by jesse on 23/05/18.
  * This is a part of the project nanodegree-android-basic-news-app.
@@ -15,11 +17,13 @@ public class News {
     private String apiURL;
     private String pillarName;
     private String contributors;
+    private String thumbnailURL;
+
 
     public News() {
     }
 
-    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String pillarName, String contributors) {
+    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String pillarName, String contributors, String thumbnailURL) {
         this.id = id;
         this.type = type;
         this.sectionName = sectionName;
@@ -29,6 +33,7 @@ public class News {
         this.webURL = apiURL;
         this.pillarName = pillarName;
         this.contributors = contributors;
+        this.thumbnailURL = thumbnailURL;
     }
 
     public String getId() {
@@ -102,4 +107,13 @@ public class News {
     public void setContributors(String contributors) {
         this.contributors = contributors;
     }
+
+    public String getThumbnailURL() {
+        return thumbnailURL;
+    }
+
+    public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
+    }
+
 }

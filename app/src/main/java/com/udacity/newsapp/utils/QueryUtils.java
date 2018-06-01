@@ -173,6 +173,7 @@ public final class QueryUtils {
                 // Get a single News object in the newsArray (in within the list of News)
                 JSONObject currentNewsResult = resultsArray.getJSONObject(i);
 
+
                 String id = currentNewsResult.getString("id");
 
                 String type = "";
@@ -233,9 +234,11 @@ public final class QueryUtils {
                 }
                 String contributors = String.valueOf(authors);
 
+                JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
+                String thumbnailURL = currentNewsFields.getString("thumbnail");
 
                 // Instantiate a News class object and add the JSON data as inputs parameters.
-                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, pillarName, contributors);
+                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, pillarName, contributors, thumbnailURL);
                 newsList.add(newsItem);
             }
 
