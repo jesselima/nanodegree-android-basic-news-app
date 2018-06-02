@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,12 +18,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.udacity.newsapp.adapters.NewsAdapter;
-import com.udacity.newsapp.fragments.CategoriesFragment;
-import com.udacity.newsapp.fragments.NewsFragment;
-import com.udacity.newsapp.fragments.SearchFragment;
 import com.udacity.newsapp.loaders.NewsLoader;
 import com.udacity.newsapp.models.News;
 
@@ -43,7 +38,13 @@ public class NewsListActivity extends AppCompatActivity
     private String page = "1";
     private String pageSize = "20";
     private String orderBy = "newest";
+    private String fromDate = "2017-01-07";
+    private String toDate = "2017-01-30";
+
     private boolean searchBySectionId = false;
+    private boolean searchFromDate = false;
+    private boolean searchToDate = false;
+
 
     private NewsAdapter newsAdapter;
     private TextView mEmptyStateTextView, textViewNoResultsFound;
@@ -71,9 +72,6 @@ public class NewsListActivity extends AppCompatActivity
                         Intent intentSearch = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(intentSearch);
                         break;
-//                    case R.id.button_nav_refresh:
-//                        restartLoaderNews();
-//                        break;
                 }
                 return true;
             }
@@ -203,7 +201,5 @@ public class NewsListActivity extends AppCompatActivity
         // Loader reset, so we can clear out our existing data.
         newsAdapter.clear();
     }
-
-
 
 }

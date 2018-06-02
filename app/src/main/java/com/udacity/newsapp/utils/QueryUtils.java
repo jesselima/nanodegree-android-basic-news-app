@@ -172,6 +172,8 @@ public final class QueryUtils {
 
                 // Get a single News object in the newsArray (in within the list of News)
                 JSONObject currentNewsResult = resultsArray.getJSONObject(i);
+                JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
+                JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
 
 
                 String id = currentNewsResult.getString("id");
@@ -212,7 +214,7 @@ public final class QueryUtils {
                 }
 
                 // Inside each News item, I access its array called "tags".
-                JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
+
                 StringBuilder authors = new StringBuilder();
                 String currentContributor = "By: ";
 
@@ -233,10 +235,13 @@ public final class QueryUtils {
                     }
                 }
                 String contributors = String.valueOf(authors);
-
                 // Extract the news URL image.
-                JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
-                String thumbnailURL = currentNewsFields.getString("thumbnail");
+                String thumbnailURL = null;
+                if(currentNewsResult.has("fields")) {
+                    if (currentNewsFields.has("thumbnail")) {
+                        thumbnailURL = currentNewsFields.getString("thumbnail");
+                    }
+                }
 
                 // Instantiate a News class object and add the JSON data as inputs parameters.
                 News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, pillarName, contributors, thumbnailURL);
