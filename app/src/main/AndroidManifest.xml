@@ -33,6 +33,7 @@
             android:name=".CategoriesActivity"
             android:label="News Categories"
             android:parentActivityName=".NewsListActivity" />
+        <activity android:name=".SavedNewsActivity"></activity>
     </application>
 
 </manifest>

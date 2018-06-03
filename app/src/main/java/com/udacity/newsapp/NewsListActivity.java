@@ -26,6 +26,7 @@ import com.udacity.newsapp.privatedata.MyApiKey;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class NewsListActivity extends AppCompatActivity
@@ -36,16 +37,18 @@ public class NewsListActivity extends AppCompatActivity
 
     /* Variables for query strings */
     private String sectionId = "";
+    private String fromDate = "2017-01-07";
+    private String toDate = "2017-01-30";
+    private String orderBy = "newest";
     private String page = "1";
     private String pageSize = "25";
     private String q = "";
-    private String orderBy = "newest";
-    private String fromDate = "2017-01-07";
-    private String toDate = "2017-01-30";
 
-    private boolean searchBySectionId = false;
-    private boolean searchAdvanced = false;
+    private String searchType = "default";
 
+//    private boolean searchDefault = true;
+//    private boolean searchBySectionId = false;
+//    private boolean searchAdvanced = false;
 
     private NewsAdapter newsAdapter;
     private TextView mEmptyStateTextView, textViewNoResultsFound;
@@ -59,22 +62,26 @@ public class NewsListActivity extends AppCompatActivity
         if( getIntent().getExtras() != null) {
             Bundle newsData = getIntent().getExtras();
 
-            if (newsData.getBoolean("searchBySectionId")){
-                searchBySectionId = true;
+
+            if (Objects.equals(newsData.getString("searchType"), "category")){
+                searchType = newsData.getString("searchType");
+//                searchBySectionId = true;
+//                searchAdvanced = false;
+//                searchDefault = false;
                 sectionId = newsData.getString("sectionId");
             }
-            if (newsData.getBoolean("searchAdvanced")){
-                searchAdvanced = true;
-                sectionId = newsData.getString("section");
+            if (Objects.equals(newsData.getString("searchType"), "advanced")){
+                searchType = newsData.getString("searchType");
+                Log.v("Search AVD?", searchType);
+//                searchAdvanced = true;
+//                searchBySectionId = false;
+//                searchDefault = false;
                 pageSize = newsData.getString("page-size");
-                orderBy = newsData.getString("orderBy");
+                orderBy = newsData.getString("order-by");
                 fromDate = newsData.getString("from-date");
                 toDate = newsData.getString("to-date");
-
-
+                q = newsData.getString("q");
             }
-
-
         }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
@@ -110,7 +117,7 @@ public class NewsListActivity extends AppCompatActivity
         } else {
             View loadingIndicator = findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
-            mEmptyStateTextView.setText("No internet connection!");
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
 
 
@@ -175,7 +182,18 @@ public class NewsListActivity extends AppCompatActivity
         Uri baseUri = Uri.parse(BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        if (searchBySectionId) {
+        if (searchType.equals("default")) {
+            uriBuilder.appendQueryParameter("order-by", orderBy);
+            uriBuilder.appendQueryParameter("page", page);
+            uriBuilder.appendQueryParameter("page-size", pageSize);
+            uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
+            uriBuilder.appendQueryParameter("show-tags", "contributor");
+            uriBuilder.appendQueryParameter("api-key", API_KEY);
+            // Log the requested URL
+            Log.v("Requested URL: ", uriBuilder.toString());
+        }
+
+        if (searchType.equals("category")) {
             uriBuilder.appendQueryParameter("section", sectionId);
             uriBuilder.appendQueryParameter("order-by", orderBy);
             uriBuilder.appendQueryParameter("page", page);
@@ -183,9 +201,11 @@ public class NewsListActivity extends AppCompatActivity
             uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
             uriBuilder.appendQueryParameter("show-tags", "contributor");
             uriBuilder.appendQueryParameter("api-key", API_KEY);
+            // Log the requested URL
+            Log.v("Requested URL: ", uriBuilder.toString());
         }
 
-        if (searchAdvanced) {
+        if (searchType.equals("advanced")) {
             uriBuilder.appendQueryParameter("from-date", fromDate);
             uriBuilder.appendQueryParameter("to-date", toDate);
             uriBuilder.appendQueryParameter("order-by", orderBy);
@@ -195,19 +215,11 @@ public class NewsListActivity extends AppCompatActivity
             uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
             uriBuilder.appendQueryParameter("show-tags", "contributor");
             uriBuilder.appendQueryParameter("api-key", API_KEY);
-
-        }
-
-        if (!searchBySectionId && !searchAdvanced) {
-            uriBuilder.appendQueryParameter("order-by", orderBy);
-            uriBuilder.appendQueryParameter("page", page);
-            uriBuilder.appendQueryParameter("page-size", pageSize);
-            uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
-            uriBuilder.appendQueryParameter("show-tags", "contributor");
-            uriBuilder.appendQueryParameter("api-key", API_KEY);
-
+            // Log the requested URL
             Log.v("Requested URL: ", uriBuilder.toString());
         }
+
+
         return new NewsLoader(this, uriBuilder.toString());
     }
 

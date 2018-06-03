@@ -22,6 +22,7 @@
         android:layout_marginTop="@dimen/margin_4"
         app:hintTextAppearance="@style/MyHintText">
         <EditText
+            android:id="@+id/search_q"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_term_example"
@@ -32,8 +33,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
         android:background="@color/colorLightGrey"/>
 
     <LinearLayout
@@ -47,23 +48,34 @@
             android:textSize="@dimen/text_size_16"
             android:textStyle="bold"/>
         <RadioGroup
+            android:id="@+id/search_radio_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/search_radio_newest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/newest"/>
             <RadioButton
+                android:id="@+id/search_radio_relevant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/relevance"/>
+            <RadioButton
+                android:id="@+id/search_radio_oldest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="oldest"/>
         </RadioGroup>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8"
         android:background="@color/colorLightGrey"/>
 
     <LinearLayout
@@ -89,14 +101,16 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="@dimen/margin_8"
                 android:src="@drawable/ic_calendar"/>
             <TextView
                 android:id="@+id/from_date_selected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:textAllCaps="false"
                 android:textSize="@dimen/text_size_16"
-                android:textStyle="italic"
-                android:textAllCaps="true"/>
+                android:textStyle="italic"/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,14 +130,16 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="@dimen/margin_8"
                 android:src="@drawable/ic_calendar"/>
             <TextView
                 android:id="@+id/to_date_selected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:textAllCaps="false"
                 android:textSize="@dimen/text_size_16"
-                android:textStyle="italic"
-                android:textAllCaps="true"/>
+                android:textStyle="italic"/>
         </LinearLayout>
 
 
@@ -132,7 +148,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_4"
         android:background="@color/colorLightGrey"/>
 
     <TextView
@@ -144,14 +160,20 @@
         android:textSize="@dimen/text_size_16"
         android:textStyle="bold"/>
     <EditText
+        android:id="@+id/search_page_size"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="@string/from_1_to_50"
         android:inputType="number"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="italic"
+        android:text="@string/from_1_to_50"/>
 
     <Button
-        android:id="@+id/btn_search"
+        android:id="@+id/button_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

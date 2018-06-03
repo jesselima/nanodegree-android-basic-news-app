@@ -31,7 +31,7 @@ public class CategoriesActivity extends AppCompatActivity {
             categoriesList.add(new NewsCategory("business", "Business", R.drawable.ic_business));
             categoriesList.add(new NewsCategory("cities", "Cities", R.drawable.ic_cities));
             categoriesList.add(new NewsCategory("music", "Music", R.drawable.ic_music));
-            categoriesList.add(new NewsCategory("world", "World", R.drawable.ic_world));
+            categoriesList.add(new NewsCategory("world", "World News", R.drawable.ic_world));
 
         categoriesAdapter = new NewsCategoriesAdapter(this, categoriesList);
         ListView listViewCategories = findViewById(R.id.list_view_categories);
@@ -49,8 +49,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
                     intent.putExtra("sectionId", sectionID);
                     intent.putExtra("sectionName", sectionName);
-                    boolean searchBySectionId = true;
-                    intent.putExtra("searchBySectionId", searchBySectionId);
+                    String searchType = "category";
+                    intent.putExtra("searchType", searchType);
                 startActivity(intent);
 
                 // Testing

@@ -112,6 +112,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
             if (currentNews.getSectionName().equals("Society")){
                 sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagSociety));
             }
+            if (currentNews.getSectionName().equals("Cities")){
+                sectionName.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTagCities));
+            }
 
             TextView contributors = listItemView.findViewById(R.id.text_view_contributor);
             contributors.setText(currentNews.getContributors());
