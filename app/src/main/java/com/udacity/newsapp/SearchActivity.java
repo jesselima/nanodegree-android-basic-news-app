@@ -6,46 +6,88 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SearchActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+import java.util.Calendar;
+import java.util.Date;
 
-    Button selectedDate;
-    TextView textViewDate;
+public class SearchActivity extends AppCompatActivity {
+
+    LinearLayout linearLayoutPickFromDate;
+    LinearLayout linearLayoutPickToDate;
+
+    TextView fromDateSelected;
+    TextView toDateSelected;
     DatePickerDialog datePickerDialog;
+
+    int currentYear;
+    int currentMonth;
+    int currentDayOfMonth;
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        selectedDate = findViewById(R.id.btnDate);
-        textViewDate = findViewById(R.id.tvSelectedDate);
+        linearLayoutPickFromDate = findViewById(R.id.from_date);
+        fromDateSelected = findViewById(R.id.from_date_selected);
 
-        selectedDate.setOnClickListener(new View.OnClickListener() {
+        linearLayoutPickToDate = findViewById(R.id.to_date);
+        toDateSelected = findViewById(R.id.to_date_selected);
+
+        calendar = Calendar.getInstance();
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+        linearLayoutPickFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 datePickerDialog = new DatePickerDialog(SearchActivity.this,
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            textViewDate.setText(year + "-" + month + "-" + day );
+                            StringBuilder date = new StringBuilder();
+                                date.append(year);
+                                date.append("-");
+                                date.append(month + 1);
+                                date.append("-");
+                                date.append(day);
+                            String fullDate = String.valueOf(date);
+                            fromDateSelected.setText(fullDate);
                         }
-                    }, 2018, 1, 1);
+                    }, currentYear, currentMonth, currentDayOfMonth);
                 datePickerDialog.show();
             }
         });
+        fromDateSelected.setText(currentYear + "-" + (currentMonth +1) + "-" + currentDayOfMonth);
 
+
+        linearLayoutPickToDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(SearchActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                StringBuilder date = new StringBuilder();
+                                    date.append(year);
+                                    date.append("-");
+                                    date.append(month + 1);
+                                    date.append("-");
+                                    date.append(day);
+                                String fullDate = String.valueOf(date);
+                                toDateSelected.setText(fullDate);
+                            }
+                        }, currentYear, currentMonth, currentDayOfMonth);
+                datePickerDialog.show();
+            }
+        });
+        toDateSelected.setText(currentYear + "-" + (currentMonth +1) + "-" + currentDayOfMonth);
 
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }
