@@ -1,6 +1,7 @@
 package com.udacity.newsapp.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.udacity.newsapp.R;
 import com.udacity.newsapp.models.NewsCategory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jesse on 02/06/18.
@@ -19,8 +21,8 @@ import java.util.ArrayList;
  */
 public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
 
-    public NewsCategoriesAdapter(Activity context, ArrayList<NewsCategory> newsCategories){
-        super(context, 0, newsCategories);
+    public NewsCategoriesAdapter(Context context, List<NewsCategory> categoriesList){
+        super(context, 0, categoriesList);
 
     }
 
@@ -47,3 +49,31 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

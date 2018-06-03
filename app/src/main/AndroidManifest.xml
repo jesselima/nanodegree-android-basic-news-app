@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".NewsListActivity"
-            android:label="News List">
+            android:label="The Guardian News">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +26,8 @@
             android:label="News Details"
             android:parentActivityName=".NewsListActivity" />
         <activity
-            android:name=".MainActivity"
-            android:label="MainActivity"
-            android:parentActivityName=".NewsListActivity" />
-        <activity
             android:name=".SearchActivity"
-            android:label="Search News"
+            android:label="Advanced Search"
             android:parentActivityName=".NewsListActivity" />
         <activity
             android:name=".CategoriesActivity"

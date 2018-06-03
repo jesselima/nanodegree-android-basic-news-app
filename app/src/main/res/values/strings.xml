@@ -1,20 +1,17 @@
 <resources>
     <string name="app_name">News App</string>
     <!-- News Categories -->
-    <string name="tab_tile_top_news">News</string>
-    <string name="tab_tile_world_news">World</string>
-    <string name="tab_tile_uk_news">UK News</string>
-    <string name="tab_tile_science_news">Science</string>
-    <string name="tab_tile_cities_news">Cities</string>
-    <string name="tab_tile_global_development_news">Global Development</string>
-    <string name="tab_tile_football_news">Sport</string>
-    <string name="tab_tile_tech_news">Tech</string>
-    <string name="tab_tile_business_news">Business</string>
-    <string name="tab_tile_environment_news">Environment</string>
-
     <string name="unknown_date">Unknown date</string>
-
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="type_a_term_to_search">Type a term to search</string>
+    <!--<string name="space">:\u0020</string>-->
+    <string name="type_a_term_to_search">Type one or more terms to search</string>
+    <string name="search_term_example">Use commas between values. i.e. google,apple,…</string>
+    <string name="newest">Newest</string>
+    <string name="relevance">Relevance</string>
+    <string name="news_per_page">News per page:</string>
+    <string name="order_by">Order By:</string>
+    <string name="from_date">From Date:</string>
+    <string name="to_date">To Date:</string>
+    <string name="from_1_to_50">from 1 to 50</string>
+    <string name="search">Search</string>
 </resources>

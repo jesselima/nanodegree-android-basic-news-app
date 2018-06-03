@@ -8,74 +8,155 @@
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
-    <!--<include layout="@layout/botton_nav"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_a_term_to_search"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"/>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_4"
         android:layout_marginBottom="@dimen/margin_4"
+        android:layout_marginTop="@dimen/margin_4"
         app:hintTextAppearance="@style/MyHintText">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/type_a_term_to_search"
+            android:hint="@string/search_term_example"
+            android:maxLines="1"
             android:theme="@style/MyEditText" />
-
     </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:background="@color/colorLightGrey"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_by"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"/>
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Newest"/>
+                android:text="@string/newest"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Relevance"/>
+                android:text="@string/relevance"/>
         </RadioGroup>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_16"
+        android:background="@color/colorLightGrey"/>
+
+    <Button
+        android:id="@+id/btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"/>
+
+    <TextView
+        android:id="@+id/tvSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select date shows here"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
         android:orientation="horizontal">
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:inputType="date"/>
 
-        <EditText
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="date"/>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from_date"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to_date"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_16"
+        android:background="@color/colorLightGrey"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Number of news"/>
+        android:layout_marginTop="@dimen/margin_8"
+        android:gravity="center"
+        android:text="@string/news_per_page"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"/>
     <EditText
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="from 1 to 50"/>
-
+        android:layout_gravity="center"
+        android:hint="@string/from_1_to_50"
+        android:inputType="number"/>
 
     <Button
+        android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Search"/>
-
-    <!--<include layout="@layout/botton_nav"/>-->
+        android:layout_marginBottom="@dimen/layout_margin8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/search"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_16"/>
 
 </LinearLayout>
