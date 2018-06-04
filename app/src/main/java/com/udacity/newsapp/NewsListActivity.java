@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,9 @@ import com.udacity.newsapp.privatedata.MyApiKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+// TODO: When user click in the bookmark button. The these info must be saved in SQLite local database: title, id, published date and sectionID.
+// TODO: When user click in the share image he must be able to send the news item webUrl to any app.
 
 
 public class NewsListActivity extends AppCompatActivity
@@ -41,42 +45,35 @@ public class NewsListActivity extends AppCompatActivity
     private String toDate = "2017-01-30";
     private String orderBy = "newest";
     private String page = "1";
-    private String pageSize = "25";
+    private String pageSize = "50";
     private String q = "";
 
     private String searchType = "default";
 
-//    private boolean searchDefault = true;
-//    private boolean searchBySectionId = false;
-//    private boolean searchAdvanced = false;
-
     private NewsAdapter newsAdapter;
     private TextView mEmptyStateTextView, textViewNoResultsFound;
 
+    ImageView imageSeeOnWeb, imageSeeOnApp, imageShare, imageBookmar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
 
+        imageSeeOnWeb = findViewById(R.id.image_view_web);
+        imageSeeOnApp = findViewById(R.id.image_view_app);
+        imageShare = findViewById(R.id.image_view_share);
+        imageBookmar = findViewById(R.id.image_view_bookmark);
+
         if( getIntent().getExtras() != null) {
             Bundle newsData = getIntent().getExtras();
 
-
             if (Objects.equals(newsData.getString("searchType"), "category")){
                 searchType = newsData.getString("searchType");
-//                searchBySectionId = true;
-//                searchAdvanced = false;
-//                searchDefault = false;
                 sectionId = newsData.getString("sectionId");
             }
             if (Objects.equals(newsData.getString("searchType"), "advanced")){
                 searchType = newsData.getString("searchType");
-                Log.v("Search AVD?", searchType);
-//                searchAdvanced = true;
-//                searchBySectionId = false;
-//                searchDefault = false;
-                pageSize = newsData.getString("page-size");
                 orderBy = newsData.getString("order-by");
                 fromDate = newsData.getString("from-date");
                 toDate = newsData.getString("to-date");
@@ -119,7 +116,6 @@ public class NewsListActivity extends AppCompatActivity
             loadingIndicator.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
-
 
         /* If there are no results shows a message */
         textViewNoResultsFound = findViewById(R.id.no_news_found_text);
@@ -218,7 +214,6 @@ public class NewsListActivity extends AppCompatActivity
             // Log the requested URL
             Log.v("Requested URL: ", uriBuilder.toString());
         }
-
 
         return new NewsLoader(this, uriBuilder.toString());
     }

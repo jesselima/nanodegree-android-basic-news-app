@@ -8,22 +8,10 @@
     android:orientation="vertical"
     tools:context=".NewsDetailsActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="News Details Activity"/>
 
-            <ProgressBar
-                android:layout_gravity="center"
-                android:layout_width="40dp"
-                android:layout_height="15dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_16"
-                android:text="NewsDetailsActivity"/>
-
-        </LinearLayout>
 
 </LinearLayout>

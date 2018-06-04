@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     private Calendar calendar;
 
     /* Strings to be used in Advanced search */
-    private String pageSize, q,fromDate, toDate, fullFromDate, fullToDate;
+    private String q,fromDate, toDate, fullFromDate, fullToDate;
     private String orderBy = "";
 
 
@@ -43,7 +43,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         final RadioGroup radioGroup = findViewById(R.id.search_radio_group);
-        final EditText newsPerPage = findViewById(R.id.search_page_size);
         final EditText searchTerms = findViewById(R.id.search_q);
 
         /* Date picker implementation */
@@ -106,22 +105,18 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         /* Get input values and update variables to be sent by intent do NewsListActivity */
-
-
         Button buttonSearch = findViewById(R.id.button_search);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 orderBy = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
-                pageSize = newsPerPage.getText().toString();
                 q = searchTerms.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
                 intent.putExtra("from-date", fromDate);
                 intent.putExtra("to-date", toDate);
                 intent.putExtra("order-by", orderBy);
-                intent.putExtra("page-size", pageSize);
                 intent.putExtra("q", q);
                 String searchType = "advanced";
                 intent.putExtra("searchType", searchType);
@@ -130,7 +125,6 @@ public class SearchActivity extends AppCompatActivity {
                 Log.v("Search fromDate value: ", fromDate);
                 Log.v("Search toDate value: ", toDate);
                 Log.v("Search orderBy value: ", orderBy);
-                Log.v("Search pageSize value: ", pageSize);
                 Log.v("Search q value: ", q);
                 Log.v("searchType value: ", searchType);
 

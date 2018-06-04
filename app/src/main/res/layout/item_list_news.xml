@@ -25,7 +25,7 @@
                 android:id="@+id/text_view_web_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_16"
                 android:textStyle="bold"
                 tools:text="Sudanese teenager who killed rapist husband appeals death sentence"/>
 
@@ -33,14 +33,14 @@
                 android:id="@+id/text_view_publication_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_12"
+                android:textSize="@dimen/text_size_14"
                 tools:text="Sun 27 May 2018 07.00 BST"/>
             <TextView
                 android:id="@+id/text_view_section_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_size_12"
+                android:textSize="@dimen/text_size_16"
                 android:textStyle="bold"
                 tools:text="Global development"/>
 
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="italic"
                 tools:text="Authors"/>
             <LinearLayout
@@ -60,25 +60,29 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/image_view_web"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/baseline_public_24"/>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/image_view_app"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/baseline_mobile_screen_share_24"/>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/image_view_share"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/baseline_share_24"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/image_view_bookmark"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/baseline_bookmark_border_24"/>
 
             </LinearLayout>
