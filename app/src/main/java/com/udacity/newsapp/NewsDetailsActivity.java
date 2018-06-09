@@ -1,5 +1,7 @@
 package com.udacity.newsapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,5 +29,13 @@ public class NewsDetailsActivity extends AppCompatActivity {
             Log.v("Clicked News id: ", id);
         }
 
+    }
+
+    private void openWebPage(String url){
+        Uri uriWebPage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uriWebPage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }
