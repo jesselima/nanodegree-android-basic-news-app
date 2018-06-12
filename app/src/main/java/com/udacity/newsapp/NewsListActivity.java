@@ -254,4 +254,12 @@ public class NewsListActivity extends AppCompatActivity
         newsAdapter.clear();
     }
 
+    private void openWebPage(String url){
+        Uri uriWebPage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uriWebPage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
 }
