@@ -1,12 +1,14 @@
 package com.udacity.newsapp.privatedata;
 
 /**
- * Created by jesse on 02/06/18.
+ * This class holds static methods and variables for a better use through all the app.
  * This is a part of the project nanodegree-android-basic-news-app.
  */
 public class MyApiKey {
 
+    // TODO: Paste you API KEY in "test" string value instead.
     private static final String API_KEY = "test";
+
     private static final String BASE_URL = "https://content.guardianapis.com/search";
     private static final String BASE_URL_NEWS_DETAILS = "https://content.guardianapis.com/";
     private static final String BASE_URL_WEB_NEWS_URL = "https://www.theguardian.com/";
