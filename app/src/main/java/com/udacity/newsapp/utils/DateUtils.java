@@ -5,16 +5,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by jesse on 15/06/18.
- * This is a part of the project nanodegree-android-basic-news-app.
+ *
+ *
  */
 public final class DateUtils {
 
+    /**
+     * Allows others classes instantiates a empty DateUtils object.
+     */
     public DateUtils() {
     }
 
-
     /**
+     * This method when called receives a date as String format in this pattern: yyyy-MM-dd'T'HH:mm:ss
+     * and return a String with this pattern: HH:mm LLL dd, yyyy
      *
      * @param dateString is the date in a string format is this pattern yyyy-MM-dd'T'HH:mm:ss
      * @return the date as a string with this new format (HH:mm LLL dd, yyyy) using the formatDate method.

@@ -3,7 +3,7 @@ package com.udacity.newsapp.adapters;
 import android.widget.ArrayAdapter;
 
 /**
- * Created by jesse on 28/05/18.
+ * Created by Jesse Lima on 28/05/18.
  * This is a part of the project nanodegree-android-basic-news-app.
  */
 import android.content.Context;

@@ -35,6 +35,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     /**
      * This is on a background thread.
+     * If the input Url object is null the method will nos proceed.
      */
     @Override
     public List<News> loadInBackground() {

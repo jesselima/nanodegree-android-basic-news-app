@@ -11,12 +11,6 @@ public class NewsCategory {
     private int sectionImageResId;
 
     /* Full constructor */
-    public NewsCategory(String sectionId, String sectionName) {
-        this.sectionId = sectionId;
-        this.sectionName = sectionName;
-    }
-
-    /* Full constructor */
     public NewsCategory(String sectionId, String sectionName, int sectionImageResId) {
         this.sectionId = sectionId;
         this.sectionName = sectionName;
