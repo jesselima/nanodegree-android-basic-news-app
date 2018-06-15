@@ -165,7 +165,6 @@ public final class QueryUtils {
             // Create a JSONArray and put the array of News (results) inside it.
             JSONArray resultsArray = responseObject.getJSONArray("results");
 
-
             // For each position in the newsArray (inside the JSONArray object)
             // extract the JSON data from such position in the array and put the data into a new News class object.
             for (int i = 0; i < resultsArray.length(); i++) {
@@ -174,7 +173,6 @@ public final class QueryUtils {
                 JSONObject currentNewsResult = resultsArray.getJSONObject(i);
                 JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
                 JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
-
 
                 String id = currentNewsResult.getString("id");
 
@@ -225,9 +223,6 @@ public final class QueryUtils {
 
                         currentContributor = currentTagObject.getString("webTitle");
 
-//                            if (tagsArrayCurrentNews.length() == 0){
-//                                currentContributor += ".";
-//                            }
                         // If there is only one contributor adds a dot.
                         if (tagsArrayCurrentNews.length() == 1){
                             currentContributor += ".";
@@ -236,9 +231,6 @@ public final class QueryUtils {
                         }else{
                             currentContributor += ".";
                         }
-
-
-
                         authors.append(currentContributor);
                     }
                 }

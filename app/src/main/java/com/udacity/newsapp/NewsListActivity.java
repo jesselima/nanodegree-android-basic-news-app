@@ -9,14 +9,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -169,7 +167,7 @@ public class NewsListActivity extends AppCompatActivity
         }
     }
 
-    /* Pagination control */
+    /* Pagination forward control */
     public void paginationForward(){
         int pageNumber = Integer.parseInt(String.valueOf(page));
         pageNumber++;
@@ -177,6 +175,7 @@ public class NewsListActivity extends AppCompatActivity
         doToast(getString(R.string.page) + String.valueOf(pageNumber));
         restartLoaderNews();
     }
+    /* Pagination backward control */
     public void paginationBackward(){
         int pageNumber = Integer.parseInt(String.valueOf(page));
         if (pageNumber == 1){
@@ -189,7 +188,6 @@ public class NewsListActivity extends AppCompatActivity
             restartLoaderNews();
             doToast(getString(R.string.page) + String.valueOf(pageNumber));
         }
-
     }
 
     public void doToast(String string){

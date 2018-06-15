@@ -23,41 +23,39 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-
         final ArrayList<NewsCategory> categoriesList = new ArrayList<NewsCategory>();
 
-            categoriesList.add(new NewsCategory("technology", "Technology", R.drawable.ic_technology));
-            categoriesList.add(new NewsCategory("games", "Games", R.drawable.ic_games));
-            categoriesList.add(new NewsCategory("business", "Business", R.drawable.ic_business));
-            categoriesList.add(new NewsCategory("cities", "Cities", R.drawable.ic_cities));
-            categoriesList.add(new NewsCategory("music", "Music", R.drawable.ic_music));
-            categoriesList.add(new NewsCategory("news", "News", R.drawable.ic_news));
-            categoriesList.add(new NewsCategory("world-news", "World News", R.drawable.ic_world));
-            categoriesList.add(new NewsCategory("us-news", "US News", R.drawable.ic_us_news));
-            categoriesList.add(new NewsCategory("uk-news", "UK News", R.drawable.ic_uk_news));
-            categoriesList.add(new NewsCategory("australia-news", "Australia News", R.drawable.ic_aus_news));
-            categoriesList.add(new NewsCategory("sport", "Sport", R.drawable.ic_sport));
-            categoriesList.add(new NewsCategory("media", "Media", R.drawable.ic_media));
-            categoriesList.add(new NewsCategory("books", "Books", R.drawable.ic_books));
-            categoriesList.add(new NewsCategory("politics", "Politics", R.drawable.ic_politics));
-            categoriesList.add(new NewsCategory("culture", "Culture", R.drawable.ic_culture));
-            categoriesList.add(new NewsCategory("society", "Society", R.drawable.ic_society));
-            categoriesList.add(new NewsCategory("football", "Football", R.drawable.ic_football));
-            categoriesList.add(new NewsCategory("tv-and-radio", "Television & radio", R.drawable.ic_radio_and_television));
-            categoriesList.add(new NewsCategory("environment", "Environment", R.drawable.ic_environment));
-            categoriesList.add(new NewsCategory("education", "Education", R.drawable.ic_education));
-            categoriesList.add(new NewsCategory("commentisfree", "Opinion", R.drawable.ic_opinion));
-            categoriesList.add(new NewsCategory("fashion", "Fashion", R.drawable.ic_fashion));
-            categoriesList.add(new NewsCategory("film", "Film", R.drawable.ic_film));
-            categoriesList.add(new NewsCategory("global-development", "Global development", R.drawable.ic_global_development));
-            categoriesList.add(new NewsCategory("why-we-travel", "Why we travel", R.drawable.ic_why_we_travel));
-            categoriesList.add(new NewsCategory("science", "Science", R.drawable.ic_science));
-            categoriesList.add(new NewsCategory("lifeandstyle", "Life and style", R.drawable.ic_life_and_style));
+            categoriesList.add(new NewsCategory(getString(R.string.technology_section_id), getString(R.string.technology_section_name), R.drawable.ic_technology));
+            categoriesList.add(new NewsCategory(getString(R.string.games_section_id), getString(R.string.games_section_name), R.drawable.ic_games));
+            categoriesList.add(new NewsCategory(getString(R.string.business_section_id), getString(R.string.business_section_name), R.drawable.ic_business));
+            categoriesList.add(new NewsCategory(getString(R.string.cities_section_id), getString(R.string.cities_section_name), R.drawable.ic_cities));
+            categoriesList.add(new NewsCategory(getString(R.string.music_section_id), getString(R.string.music_section_name), R.drawable.ic_music));
+            categoriesList.add(new NewsCategory(getString(R.string.news_section_id), getString(R.string.news_section_name), R.drawable.ic_news));
+            categoriesList.add(new NewsCategory(getString(R.string.world_news_section_id), getString(R.string.world_news_section_name), R.drawable.ic_world));
+            categoriesList.add(new NewsCategory(getString(R.string.us_news_section_id), getString(R.string.us_news_section_name), R.drawable.ic_us_news));
+            categoriesList.add(new NewsCategory(getString(R.string.uk_news_section_id), getString(R.string.uk_news_section_name), R.drawable.ic_uk_news));
+            categoriesList.add(new NewsCategory(getString(R.string.australia_news_section_id), getString(R.string.australia_news_section_name), R.drawable.ic_aus_news));
+            categoriesList.add(new NewsCategory(getString(R.string.sport_section_id), getString(R.string.sport_section_name), R.drawable.ic_sport));
+            categoriesList.add(new NewsCategory(getString(R.string.media_section_id), getString(R.string.media_section_name), R.drawable.ic_media));
+            categoriesList.add(new NewsCategory(getString(R.string.books_section_id), getString(R.string.books_section_name), R.drawable.ic_books));
+            categoriesList.add(new NewsCategory(getString(R.string.politics_section_id), getString(R.string.politics_section_name), R.drawable.ic_politics));
+            categoriesList.add(new NewsCategory(getString(R.string.culture_section_id), getString(R.string.culture_section_name), R.drawable.ic_culture));
+            categoriesList.add(new NewsCategory(getString(R.string.society_section_id), getString(R.string.society_section_name), R.drawable.ic_society));
+            categoriesList.add(new NewsCategory(getString(R.string.football_section_id), getString(R.string.football_section_name), R.drawable.ic_football));
+            categoriesList.add(new NewsCategory(getString(R.string.tv_and_radio_section_id), getString(R.string.tv_and_radio_section_name), R.drawable.ic_radio_and_television));
+            categoriesList.add(new NewsCategory(getString(R.string.environment_section_id), getString(R.string.environment_section_name), R.drawable.ic_environment));
+            categoriesList.add(new NewsCategory(getString(R.string.education_section_id), getString(R.string.education_section_name), R.drawable.ic_education));
+            categoriesList.add(new NewsCategory(getString(R.string.opinion_section_id), getString(R.string.opinion_section_name), R.drawable.ic_opinion));
+            categoriesList.add(new NewsCategory(getString(R.string.fashion_section_id), getString(R.string.fashion_section_name), R.drawable.ic_fashion));
+            categoriesList.add(new NewsCategory(getString(R.string.film_section_id), getString(R.string.film_section_name), R.drawable.ic_film));
+            categoriesList.add(new NewsCategory(getString(R.string.global_development_section_id), getString(R.string.global_development_section_name), R.drawable.ic_global_development));
+            categoriesList.add(new NewsCategory(getString(R.string.why_we_travel_section_id), getString(R.string.why_we_travel_section_name), R.drawable.ic_why_we_travel));
+            categoriesList.add(new NewsCategory(getString(R.string.science_section_id), getString(R.string.science_section_name), R.drawable.ic_science));
+            categoriesList.add(new NewsCategory(getString(R.string.life_and_style_section_id), getString(R.string.life_and_style_section_name), R.drawable.ic_life_and_style));
 
         categoriesAdapter = new NewsCategoriesAdapter(this, categoriesList);
         ListView listViewCategories = findViewById(R.id.list_view_categories);
         listViewCategories.setAdapter(categoriesAdapter);
-
 
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,7 +72,7 @@ public class CategoriesActivity extends AppCompatActivity {
                     intent.putExtra("searchType", searchType);
                 startActivity(intent);
 
-                // Testing
+                // Logging
                 Log.v("sectionID/Name: ", sectionID + "/" + sectionName);
             }
         });

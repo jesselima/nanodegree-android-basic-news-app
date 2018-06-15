@@ -8,9 +8,9 @@
     <color name="colorLightGrey">#dedede</color>
     <color name="colorAlpha">#00ffffff</color>
     <color name="colorCardBackground">#9ed2f7</color>
-    <color name="colorCardBackgroundTint">@android:color/holo_blue_bright</color>
+
     <color name="colorTagBusiness">#d27227</color>
-    <color name="colorTagSport">#8f2d1d</color>
+    <color name="colorTagSports">#8f2d1d</color>
     <color name="colorTagMedia">#028300</color>
     <color name="colorTagBooks">#973f62</color>
     <color name="colorTagPolitics">#309c7e</color>

@@ -20,6 +20,14 @@ import java.util.Date;
 
 public class SearchActivity extends AppCompatActivity {
 
+    private static final String CONST_ORDER_BY_KEY = "order-by";
+    private static final String CONST_SEARCH_TYPE_KEY = "searchType";
+    private static final String CONST_SEARCH_TYPE_VALUE = "advanced";
+    private static final String CONST_FROM_DATE_KEY = "from-date";
+    private static final String CONST_TO_DATE_KEY = "to-date";
+    private static final String CONST_Q_KEY = "q";
+
+
     private LinearLayout linearLayoutPickFromDate;
     private LinearLayout linearLayoutPickToDate;
 
@@ -68,9 +76,9 @@ public class SearchActivity extends AppCompatActivity {
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             StringBuilder date = new StringBuilder();
                                 date.append(year);
-                                date.append("-");
+                                date.append(getString(R.string.dash));
                                 date.append(month + 1);
-                                date.append("-");
+                                date.append(getString(R.string.dash));
                                 date.append(day);
                             fullFromDate = String.valueOf(date);
                             fromDateSelected.setText(fullFromDate);
@@ -91,9 +99,9 @@ public class SearchActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 StringBuilder date = new StringBuilder();
                                     date.append(year);
-                                    date.append("-");
+                                    date.append(getString(R.string.dash));
                                     date.append(month + 1);
-                                    date.append("-");
+                                    date.append(getString(R.string.dash));
                                     date.append(day);
                                 fullToDate = String.valueOf(date);
                                 toDateSelected.setText(fullToDate);
@@ -114,20 +122,11 @@ public class SearchActivity extends AppCompatActivity {
                 q = searchTerms.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
-                intent.putExtra("from-date", fromDate);
-                intent.putExtra("to-date", toDate);
-                intent.putExtra("order-by", orderBy);
-                intent.putExtra("q", q);
-                String searchType = "advanced";
-                intent.putExtra("searchType", searchType);
-
-                Log.v("SEARCH ACTIVITY: ", "TESTING MY INPUTS");
-                Log.v("Search fromDate value: ", fromDate);
-                Log.v("Search toDate value: ", toDate);
-                Log.v("Search orderBy value: ", orderBy);
-                Log.v("Search q value: ", q);
-                Log.v("searchType value: ", searchType);
-
+                    intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
+                    intent.putExtra(CONST_TO_DATE_KEY, toDate);
+                    intent.putExtra(CONST_ORDER_BY_KEY, orderBy);
+                    intent.putExtra(CONST_Q_KEY, q);
+                    intent.putExtra(CONST_SEARCH_TYPE_KEY, CONST_SEARCH_TYPE_VALUE);
                 startActivity(intent);
             }
         });

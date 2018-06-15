@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_14"
+                android:textStyle="bold"
                 tools:text="Global development"/>
             <TextView
                 android:id="@+id/text_view_contributor"

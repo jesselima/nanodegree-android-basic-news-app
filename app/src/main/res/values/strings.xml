@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">News App</string>
-    <!-- News Categories -->
     <string name="unknown_date">Unknown date</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!--<string name="space">:\u0020</string>-->
     <string name="type_a_term_to_search">Type one or more terms to search</string>
     <string name="search_term_example">Use commas between values. i.e. google,apple,…</string>
     <string name="newest">newest</string>
     <string name="relevance">relevance</string>
-    <string name="news_per_page">News per page:</string>
+    <string name="oldest">oldest</string>
     <string name="order_by">Order By:</string>
     <string name="from_date">From Date:</string>
     <string name="to_date">To Date:</string>
@@ -21,4 +18,60 @@
     <string name="no_internet_connection">No internet connection!</string>
     <string name="warning_you_are_at_page_one">You are at page 1.</string>
     <string name="page">Page\u0020</string>
+    <!-- sectionId and sectionName -->
+    <string name="technology_section_id" translatable="false">technology</string>
+    <string name="technology_section_name" translatable="false">Technology</string>
+    <string name="games_section_id" translatable="false">games</string>
+    <string name="games_section_name" translatable="false">Games</string>
+    <string name="business_section_id" translatable="false">business</string>
+    <string name="business_section_name" translatable="false">Business</string>
+    <string name="cities_section_id" translatable="false">cities</string>
+    <string name="cities_section_name" translatable="false">Cities</string>
+    <string name="music_section_id" translatable="false">music</string>
+    <string name="music_section_name" translatable="false">Music</string>
+    <string name="news_section_id" translatable="false">news</string>
+    <string name="news_section_name" translatable="false">News</string>
+    <string name="world_news_section_id" translatable="false">world</string>
+    <string name="world_news_section_name" translatable="false">World News</string>
+    <string name="us_news_section_id" translatable="false">us-news</string>
+    <string name="us_news_section_name" translatable="false">US News</string>
+    <string name="uk_news_section_id" translatable="false">uk-news</string>
+    <string name="uk_news_section_name" translatable="false">UK News</string>
+    <string name="australia_news_section_id" translatable="false">australia-news</string>
+    <string name="australia_news_section_name" translatable="false">Australia News</string>
+    <string name="sport_section_id" translatable="false">sport</string>
+    <string name="sport_section_name" translatable="false">Sport</string>
+    <string name="media_section_id" translatable="false">media</string>
+    <string name="media_section_name" translatable="false">Media</string>
+    <string name="books_section_id" translatable="false">books</string>
+    <string name="books_section_name" translatable="false">Books</string>
+    <string name="politics_section_id" translatable="false">politics</string>
+    <string name="politics_section_name" translatable="false">Politics</string>
+    <string name="culture_section_id" translatable="false">culture</string>
+    <string name="culture_section_name" translatable="false">Culture</string>
+    <string name="society_section_id" translatable="false">society</string>
+    <string name="society_section_name" translatable="false">Society</string>
+    <string name="football_section_id" translatable="false">football</string>
+    <string name="football_section_name" translatable="false">Football</string>
+    <string name="tv_and_radio_section_id" translatable="false">tv-and-radio</string>
+    <string name="tv_and_radio_section_name" translatable="false">Television and radio</string>
+    <string name="environment_section_id" translatable="false">environment</string>
+    <string name="environment_section_name" translatable="false">Environment</string>
+    <string name="education_section_id" translatable="false">education</string>
+    <string name="education_section_name" translatable="false">Education</string>
+    <string name="opinion_section_id" translatable="false">commentisfree</string>
+    <string name="opinion_section_name" translatable="false">Opinion</string>
+    <string name="fashion_section_id" translatable="false">fashion</string>
+    <string name="fashion_section_name" translatable="false">Fashion</string>
+    <string name="film_section_id" translatable="false">film</string>
+    <string name="film_section_name" translatable="false">Film</string>
+    <string name="global_development_section_id" translatable="false">global-development</string>
+    <string name="global_development_section_name" translatable="false">Global development</string>
+    <string name="why_we_travel_section_id" translatable="false">why-we-travel</string>
+    <string name="why_we_travel_section_name" translatable="false">Why we travel</string>
+    <string name="science_section_id" translatable="false">science</string>
+    <string name="science_section_name" translatable="false">Science</string>
+    <string name="life_and_style_section_id" translatable="false">lifeandstyle</string>
+    <string name="life_and_style_section_name" translatable="false">Life and style</string>
+    <string name="the_list_is_empty">The list is empty.</string>
 </resources>

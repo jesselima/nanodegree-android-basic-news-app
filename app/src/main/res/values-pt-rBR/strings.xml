@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">News App</string>
+    <string name="from_date">A partir da data:</string>
+    <string name="to_date">Até a data:</string>
+    <string name="from_1_to_50">de 1 a 50</string>
+    <string name="search">Pesquisar</string>
+    <string name="news">Notícias</string>
+    <string name="categories">Categorias</string>
+    <string name="no_internet_connection">Sem conexão com internet</string>
+    <string name="warning_you_are_at_page_one">Você está na página 1</string>
+    <string name="page">Página</string>
+    <string name="unknown_date">Data desconhecida</string>
+    <string name="type_a_term_to_search">Digite um ou mais termos de busca</string>
+    <string name="search_term_example">use vírgula entre os termos. ex. google,apple,…</string>
+    <string name="oldest">Mais antigas</string>
+    <string name="no_date_selected">Selecione uma data.</string>
+    <string name="order_by">Ordenar por:</string>
+</resources>

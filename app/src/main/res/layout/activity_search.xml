@@ -20,14 +20,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_4"
         android:layout_marginTop="@dimen/margin_4"
-        app:hintTextAppearance="@style/MyHintText">
+        app:hintTextAppearance="@style/SearchHintText">
         <EditText
             android:id="@+id/search_q"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_term_example"
             android:maxLines="1"
-            android:theme="@style/MyEditText" />
+            android:theme="@style/SearchEditText" />
     </android.support.design.widget.TextInputLayout>
 
     <View
@@ -68,7 +68,7 @@
                 android:id="@+id/search_radio_oldest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="oldest"/>
+                android:text="@string/oldest"/>
         </RadioGroup>
     </LinearLayout>
 
