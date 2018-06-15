@@ -14,7 +14,11 @@
     <string name="to_date">To Date:</string>
     <string name="from_1_to_50">from 1 to 50</string>
     <string name="search">Search</string>
+    <string name="news">News</string>
+    <string name="categories">Categories</string>
     <string name="dash">-</string>
     <string name="no_date_selected">Select a date.</string>
     <string name="no_internet_connection">No internet connection!</string>
+    <string name="warning_you_are_at_page_one">You are at page 1.</string>
+    <string name="page">Page\u0020</string>
 </resources>

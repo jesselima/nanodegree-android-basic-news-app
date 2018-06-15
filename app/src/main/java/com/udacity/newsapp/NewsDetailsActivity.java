@@ -12,9 +12,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
     String baseUrl;
 
-    // TODO: Implement news details layout and Loaders. The layout must to all important content of the News item. Contributors names and pictures too.
-    // TODO: This activity must have the images with actions Share, se on the web and save.
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +19,11 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
         baseUrl = MyApiKey.getBaseUrlNewsDetails();
 
-
         if( getIntent().getExtras() != null){
             Bundle newsData = getIntent().getExtras();
             String id = newsData.getString("id");
             Log.v("Clicked News id: ", id);
         }
-
     }
 
     private void openWebPage(String url){

@@ -216,25 +216,34 @@ public final class QueryUtils {
                 // Inside each News item, I access its array called "tags".
 
                 StringBuilder authors = new StringBuilder();
-                String currentContributor = "By: ";
+                String currentContributor = "";
 
                 if (tagsArrayCurrentNews.length() > 0) {
                     for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
-                        JSONObject webTitleContributorObject = tagsArrayCurrentNews.getJSONObject(t);
-                        currentContributor += webTitleContributorObject.getString("webTitle");
-                            if (tagsArrayCurrentNews.length() == 0){
-                                currentContributor += ".";
-                            }
-                            if (tagsArrayCurrentNews.length() > 1){
-                                currentContributor += ", ";
-                            }
-                            if (tagsArrayCurrentNews.length() == 1){
-                                currentContributor += ".";
-                            }
+
+                        JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
+
+                        currentContributor = currentTagObject.getString("webTitle");
+
+//                            if (tagsArrayCurrentNews.length() == 0){
+//                                currentContributor += ".";
+//                            }
+                        // If there is only one contributor adds a dot.
+                        if (tagsArrayCurrentNews.length() == 1){
+                            currentContributor += ".";
+                        }else if (tagsArrayCurrentNews.length() > 1){
+                            currentContributor += ", ";
+                        }else{
+                            currentContributor += ".";
+                        }
+
+
+
                         authors.append(currentContributor);
                     }
                 }
                 String contributors = String.valueOf(authors);
+
                 // Extract the news URL image.
                 String thumbnailURL = null;
                 if(currentNewsResult.has("fields")) {

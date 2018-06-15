@@ -29,25 +29,44 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View listItemView = convertView;
-        if (listItemView == null){
-            listItemView = LayoutInflater.from(getContext()).inflate(
+        // TODO 2
+        ViewHolder viewHolder;
+
+        // TODO 3
+        if (convertView == null){
+            convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item_categories, parent, false);
 
-            NewsCategory currentCategory = getItem(position);
+            // TODO 4
+            viewHolder = new ViewHolder();
 
-            TextView sectionName = listItemView.findViewById(R.id.text_view_section_name);
-            assert currentCategory != null;
-            sectionName.setText(currentCategory.getSectionName());
+            // TODO 5
+            viewHolder.sectionName = convertView.findViewById(R.id.text_view_section_name);
+            viewHolder.imageViewSection = convertView.findViewById(R.id.image_view_section);
 
-            ImageView imageView = listItemView.findViewById(R.id.image_view_section);
-            imageView.setImageResource(currentCategory.getSectionImageResId());
+            // TODO 6
+            convertView.setTag(viewHolder);
 
+            // TODO 7
+        }else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        return listItemView;
+        // TODO 8
+        NewsCategory currentCategory = getItem(position);
+
+        // TODO 9
+        viewHolder.sectionName.setText(currentCategory.getSectionName());
+        viewHolder.imageViewSection.setImageResource(currentCategory.getSectionImageResId());
+
+        return convertView;
     }
 
+    // TODO 1
+    private class ViewHolder{
+        private TextView sectionName;
+        private ImageView imageViewSection;
+    }
 }
 
 

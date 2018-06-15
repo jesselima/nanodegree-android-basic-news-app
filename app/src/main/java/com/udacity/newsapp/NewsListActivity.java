@@ -8,8 +8,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.udacity.newsapp.adapters.NewsAdapter;
 import com.udacity.newsapp.loaders.NewsLoader;
@@ -29,14 +30,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: When user click in the bookmark button. The these info must be saved in SQLite local database: title, id, published date and sectionID.
-// TODO: When user click in the share image he must be able to send the news item webUrl to any app.
-
 
 public class NewsListActivity extends AppCompatActivity
         implements LoaderCallbacks<List<News>>{
 
     private static final String LOG_TAG = NewsListActivity.class.getName();
+
+    private static final String CONST_ORDER_BY = "order-by";
+    private static final String CONST_PAGE = "page";
+    private static final String CONST_PAGE_SIZE = "page-size";
+    private static final String CONST_SEARCH_TYPE_KEY = "searchType";
+    private static final String CONST_SHOW_FIELDS_KEY = "show-fields";
+    private static final String CONST_SHOW_FIELDS_VALUE = "trailText,headline,thumbnail";
+    private static final String CONST_SHOW_TAGS_KEY = "show-tags";
+    private static final String CONST_SHOW_TAGS_VALUE = "contributor";
+    private static final String CONST_SECTION = "section";
+    private static final String CONST_API = "api-key";
+    private static final String CONST_FROM_DATE = "from-date";
+    private static final String CONST_TO_DATE = "to-date";
+    private static final String CONST_Q = "q";
+
     private static final int NEWS_LOADER_ID = 1;
 
     /* Variables for query strings */
@@ -45,39 +58,35 @@ public class NewsListActivity extends AppCompatActivity
     private String toDate = "2017-01-30";
     private String orderBy = "newest";
     private String page = "1";
-    private String pageSize = "50";
+    private String pageSize = "20";
     private String q = "";
+    private int pageNumber = 1;
 
     private String searchType = "default";
 
     private NewsAdapter newsAdapter;
     private TextView mEmptyStateTextView, textViewNoResultsFound;
 
-    ImageView imageSeeOnWeb, imageSeeOnApp, imageShare, imageBookmar;
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
 
-        imageSeeOnWeb = findViewById(R.id.image_view_web);
-        imageSeeOnApp = findViewById(R.id.image_view_app);
-        imageShare = findViewById(R.id.image_view_share);
-        imageBookmar = findViewById(R.id.image_view_bookmark);
-
         if( getIntent().getExtras() != null) {
             Bundle newsData = getIntent().getExtras();
 
-            if (Objects.equals(newsData.getString("searchType"), "category")){
-                searchType = newsData.getString("searchType");
+            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "category")){
+                searchType = newsData.getString(CONST_SEARCH_TYPE_KEY);
                 sectionId = newsData.getString("sectionId");
             }
-            if (Objects.equals(newsData.getString("searchType"), "advanced")){
-                searchType = newsData.getString("searchType");
-                orderBy = newsData.getString("order-by");
-                fromDate = newsData.getString("from-date");
-                toDate = newsData.getString("to-date");
-                q = newsData.getString("q");
+            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "advanced")){
+                searchType = newsData.getString(CONST_SEARCH_TYPE_KEY);
+                orderBy = newsData.getString(CONST_ORDER_BY);
+                fromDate = newsData.getString(CONST_FROM_DATE);
+                toDate = newsData.getString(CONST_TO_DATE);
+                q = newsData.getString(CONST_Q);
             }
         }
 
@@ -97,6 +106,12 @@ public class NewsListActivity extends AppCompatActivity
                     case R.id.button_nav_search:
                         Intent intentSearch = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(intentSearch);
+                        break;
+                    case R.id.button_pagination_backward:
+                        paginationBackward();
+                        break;
+                    case R.id.button_pagination_forward:
+                        paginationForward();
                         break;
                 }
                 return true;
@@ -133,27 +148,61 @@ public class NewsListActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 News newsItem = newsAdapter.getItem(position);
                 String id = newsItem.getId();
-                Intent intent = new Intent(getApplicationContext(), NewsDetailsActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
+                String BASE_WEB_URL =  MyApiKey.getBaseWebUrlNews();
+                String webUrl = BASE_WEB_URL + id;
+                openWebPage(webUrl);
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                restartLoaderNews();
-            }
-        });
+    // Close onCreate
+    }
+
+    /**
+     * When a item list is clicked the news item will be shown on the device browser.
+     * @param url is Web Url of the news item.
+     */
+    private void openWebPage(String url){
+        Uri uriWebPage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uriWebPage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    /* Pagination control */
+    public void paginationForward(){
+        int pageNumber = Integer.parseInt(String.valueOf(page));
+        pageNumber++;
+        page = String.valueOf(pageNumber);
+        doToast(getString(R.string.page) + String.valueOf(pageNumber));
+        restartLoaderNews();
+    }
+    public void paginationBackward(){
+        int pageNumber = Integer.parseInt(String.valueOf(page));
+        if (pageNumber == 1){
+            page = String.valueOf(pageNumber);
+            restartLoaderNews();
+            doToast(getString(R.string.warning_you_are_at_page_one));
+        }else {
+            pageNumber--;
+            page = String.valueOf(pageNumber);
+            restartLoaderNews();
+            doToast(getString(R.string.page) + String.valueOf(pageNumber));
+        }
 
     }
 
+    public void doToast(String string){
+        if (toast != null){
+            toast.cancel();
+        }
+        toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+
     /* Methods for LoaderCallbacks<List<News>> */
 
-    /**
-     * Restart the loader.
-     */
     public void restartLoaderNews(){
         // Clear the ListView as a new query will be kicked off
         newsAdapter.clear();
@@ -179,38 +228,38 @@ public class NewsListActivity extends AppCompatActivity
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         if (searchType.equals("default")) {
-            uriBuilder.appendQueryParameter("order-by", orderBy);
-            uriBuilder.appendQueryParameter("page", page);
-            uriBuilder.appendQueryParameter("page-size", pageSize);
-            uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
-            uriBuilder.appendQueryParameter("show-tags", "contributor");
-            uriBuilder.appendQueryParameter("api-key", API_KEY);
+            uriBuilder.appendQueryParameter(CONST_ORDER_BY, orderBy);
+            uriBuilder.appendQueryParameter(CONST_PAGE, page);
+            uriBuilder.appendQueryParameter(CONST_PAGE_SIZE, pageSize);
+            uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_API, API_KEY);
             // Log the requested URL
             Log.v("Requested URL: ", uriBuilder.toString());
         }
 
         if (searchType.equals("category")) {
-            uriBuilder.appendQueryParameter("section", sectionId);
-            uriBuilder.appendQueryParameter("order-by", orderBy);
-            uriBuilder.appendQueryParameter("page", page);
-            uriBuilder.appendQueryParameter("page-size", pageSize);
-            uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
-            uriBuilder.appendQueryParameter("show-tags", "contributor");
-            uriBuilder.appendQueryParameter("api-key", API_KEY);
+            uriBuilder.appendQueryParameter(CONST_SECTION, sectionId);
+            uriBuilder.appendQueryParameter(CONST_ORDER_BY, orderBy);
+            uriBuilder.appendQueryParameter(CONST_PAGE, page);
+            uriBuilder.appendQueryParameter(CONST_PAGE_SIZE, pageSize);
+            uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_API, API_KEY);
             // Log the requested URL
             Log.v("Requested URL: ", uriBuilder.toString());
         }
 
         if (searchType.equals("advanced")) {
-            uriBuilder.appendQueryParameter("from-date", fromDate);
-            uriBuilder.appendQueryParameter("to-date", toDate);
-            uriBuilder.appendQueryParameter("order-by", orderBy);
-            uriBuilder.appendQueryParameter("page", page);
-            uriBuilder.appendQueryParameter("page-size", pageSize);
-            uriBuilder.appendQueryParameter("q", q);
-            uriBuilder.appendQueryParameter("show-fields", "trailText,headline,thumbnail");
-            uriBuilder.appendQueryParameter("show-tags", "contributor");
-            uriBuilder.appendQueryParameter("api-key", API_KEY);
+            uriBuilder.appendQueryParameter(CONST_FROM_DATE, fromDate);
+            uriBuilder.appendQueryParameter(CONST_TO_DATE, toDate);
+            uriBuilder.appendQueryParameter(CONST_ORDER_BY, orderBy);
+            uriBuilder.appendQueryParameter(CONST_PAGE, page);
+            uriBuilder.appendQueryParameter(CONST_PAGE_SIZE, pageSize);
+            uriBuilder.appendQueryParameter(CONST_Q, q);
+            uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
+            uriBuilder.appendQueryParameter(CONST_API, API_KEY);
             // Log the requested URL
             Log.v("Requested URL: ", uriBuilder.toString());
         }
@@ -252,14 +301,6 @@ public class NewsListActivity extends AppCompatActivity
     public void onLoaderReset(Loader<List<News>> loader) {
         // Loader reset, so we can clear out our existing data.
         newsAdapter.clear();
-    }
-
-    private void openWebPage(String url){
-        Uri uriWebPage = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uriWebPage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
     }
 
 }

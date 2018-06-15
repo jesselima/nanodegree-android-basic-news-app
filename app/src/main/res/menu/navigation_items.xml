@@ -1,18 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/button_nav_top_50"
-        android:title="News"
+        android:title="@string/news"
         android:icon="@drawable/ic_whatshot_black_24dp" />
 
     <item android:id="@+id/button_nav_categories"
-        android:title="Categories"
+        android:title="@string/categories"
         android:icon="@drawable/baseline_filter_list_24" />
 
     <item android:id="@+id/button_nav_search"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_search_black" />
 
-    <!--<item android:id="@+id/button_nav_refresh"-->
-        <!--android:title="Refresh"-->
-        <!--android:icon="@drawable/baseline_autorenew_24" />-->
+    <item android:id="@+id/button_pagination_backward"
+        android:title="Previous Page"
+        android:icon="@drawable/ic_pagination_backward" />
+
+    <item android:id="@+id/button_pagination_forward"
+        android:title="Next Page"
+        android:icon="@drawable/ic_pagination_forward" />
+
 </menu>
