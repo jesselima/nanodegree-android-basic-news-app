@@ -1,7 +1,7 @@
 package com.udacity.newsapp.privatedata;
 
 /**
- * This class holds static methods and variables for a better use through all the app.
+ * This class holds static methods and variables for a better use of API KEY and Base Urls through all the app.
  * This is a part of the project nanodegree-android-basic-news-app.
  */
 public class MyApiKey {

@@ -34,6 +34,7 @@ public class NewsListActivity extends AppCompatActivity
 
     private static final String LOG_TAG = NewsListActivity.class.getName();
 
+    // Url parameters are set as constant values.
     private static final String CONST_ORDER_BY = "order-by";
     private static final String CONST_PAGE = "page";
     private static final String CONST_PAGE_SIZE = "page-size";

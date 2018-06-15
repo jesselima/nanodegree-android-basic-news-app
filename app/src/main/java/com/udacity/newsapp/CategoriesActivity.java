@@ -60,20 +60,16 @@ public class CategoriesActivity extends AppCompatActivity {
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            NewsCategory newsCategoryItem = categoriesAdapter.getItem(position);
+                String sectionID = newsCategoryItem.getSectionId();
+                String sectionName = newsCategoryItem.getSectionName();
 
-                NewsCategory newsCategoryItem = categoriesAdapter.getItem(position);
-                    String sectionID = newsCategoryItem.getSectionId();
-                    String sectionName = newsCategoryItem.getSectionName();
-
-                Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
-                    intent.putExtra("sectionId", sectionID);
-                    intent.putExtra("sectionName", sectionName);
-                    String searchType = "category";
-                    intent.putExtra("searchType", searchType);
-                startActivity(intent);
-
-                // Logging
-                Log.v("sectionID/Name: ", sectionID + "/" + sectionName);
+            Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
+                intent.putExtra("sectionId", sectionID);
+                intent.putExtra("sectionName", sectionName);
+                String searchType = "category";
+                intent.putExtra("searchType", searchType);
+            startActivity(intent);
             }
         });
 

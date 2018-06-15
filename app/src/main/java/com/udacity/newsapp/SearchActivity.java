@@ -14,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.udacity.newsapp.utils.DateUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,7 +83,7 @@ public class SearchActivity extends AppCompatActivity {
                                 date.append(getString(R.string.dash));
                                 date.append(day);
                             fullFromDate = String.valueOf(date);
-                            fromDateSelected.setText(fullFromDate);
+                            fromDateSelected.setText(DateUtils.datePickerFormat(fullFromDate));
                             fromDate = String.valueOf(fullFromDate);
                         }
                     }, currentYear, currentMonth, currentDayOfMonth);
@@ -104,7 +106,7 @@ public class SearchActivity extends AppCompatActivity {
                                     date.append(getString(R.string.dash));
                                     date.append(day);
                                 fullToDate = String.valueOf(date);
-                                toDateSelected.setText(fullToDate);
+                                toDateSelected.setText(DateUtils.datePickerFormat(fullToDate)); // fullToDate is a String date with this pattern: "yyyy-MM-dd"
                                 toDate = String.valueOf(fullToDate);
                             }
                         }, currentYear, currentMonth, currentDayOfMonth);
