@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/search_term_example"
             android:maxLines="1"
+            android:inputType="textShortMessage"
             android:theme="@style/SearchEditText" />
     </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +84,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
         android:orientation="horizontal">
-
         <LinearLayout
             android:id="@+id/from_date"
             android:layout_width="0dp"
@@ -150,7 +150,7 @@
             android:layout_marginBottom="@dimen/layout_margin8"
             android:layout_marginTop="@dimen/margin_8"
             android:backgroundTint="@color/colorAccent"
-            android:text="GO!!!"
+            android:text="@string/go"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"

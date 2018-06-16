@@ -18,6 +18,11 @@
     <string name="no_internet_connection">No internet connection!</string>
     <string name="warning_you_are_at_page_one">You are at page 1.</string>
     <string name="page">Page\u0020</string>
+    <string name="the_list_is_empty">The list is empty.</string>
+    <string name="no_news_found">No news found</string>
+    <string name="go">GO!!!</string>
+    <string name="previous_page">Previous Page</string>
+    <string name="next_page">Next Page</string>
     <!-- sectionId and sectionName -->
     <string name="technology_section_id" translatable="false">technology</string>
     <string name="technology_section_name" translatable="false">Technology</string>
@@ -73,5 +78,4 @@
     <string name="science_section_name" translatable="false">Science</string>
     <string name="life_and_style_section_id" translatable="false">lifeandstyle</string>
     <string name="life_and_style_section_name" translatable="false">Life and style</string>
-    <string name="the_list_is_empty">The list is empty.</string>
 </resources>

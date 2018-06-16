@@ -13,11 +13,11 @@
         android:icon="@drawable/ic_search_black" />
 
     <item android:id="@+id/button_pagination_backward"
-        android:title="Previous Page"
+        android:title="@string/previous_page"
         android:icon="@drawable/ic_pagination_backward" />
 
     <item android:id="@+id/button_pagination_forward"
-        android:title="Next Page"
+        android:title="@string/next_page"
         android:icon="@drawable/ic_pagination_forward" />
 
 </menu>

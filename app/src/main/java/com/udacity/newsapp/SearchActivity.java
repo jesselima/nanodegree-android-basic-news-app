@@ -36,7 +36,6 @@ public class SearchActivity extends AppCompatActivity {
     private int currentYear;
     private int currentMonth;
     private int currentDayOfMonth;
-//    private Calendar calendar;
 
     /* Strings to be used in Advanced search */
     private String q,fromDate, toDate, fullFromDate, fullToDate;
