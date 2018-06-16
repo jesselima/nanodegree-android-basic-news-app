@@ -3,6 +3,7 @@ package com.udacity.newsapp.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.udacity.newsapp.R;
 import com.udacity.newsapp.models.News;
 
 import org.json.JSONArray;
@@ -124,9 +125,9 @@ public final class QueryUtils {
 
     /**
      * Convert the {@link InputStream} into a String which contains the whole JSON response from the server.
-     * @param inputStream
+     * @param inputStream is the object that will receive streaming of bytes.
      * @return a String with the JSON data inside it.
-     * @throws IOException
+     * @throws IOException throws a error if it happens.
      */
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
@@ -169,7 +170,6 @@ public final class QueryUtils {
 
                 // Get a single News object in the newsArray (in within the list of News)
                 JSONObject currentNewsResult = resultsArray.getJSONObject(i);
-                JSONObject currentNewsFields = currentNewsResult.getJSONObject("fields");
                 JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
 
                 String id = currentNewsResult.getString("id");
@@ -211,34 +211,19 @@ public final class QueryUtils {
                     JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
                     currentContributor = currentTagObject.getString("webTitle");
                     authors.append(currentContributor);
-
-                    if(tagsArrayCurrentNews.length() == 1 ) {
-                        authors.append(".");
-                    }
-                    else if (t < tagsArrayCurrentNews.length() && t+1 < tagsArrayCurrentNews.length() ){
-                        authors.append(", ");
-                    }
-                    else /*if (t + 1 == tagsArrayCurrentNews.length() )*/{
-                        authors.append(".");
+                    if (t < tagsArrayCurrentNews.length() && t+1 < tagsArrayCurrentNews.length() ){
+                        authors.append("  |  ");
                     }
                 }
                 String contributors = String.valueOf(authors);
 
-                // Extract the news URL image.
-                String thumbnailURL = null;
-                if(currentNewsResult.has("fields")) {
-                    if (currentNewsFields.has("thumbnail")) {
-                        thumbnailURL = currentNewsFields.getString("thumbnail");
-                    }
-                }
-
                 // Instantiate a News class object and add the JSON data as inputs parameters.
-                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, contributors, thumbnailURL);
+                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, contributors);
                 newsList.add(newsItem);
             }
 
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing the news JSON results", e);
         }
         // Return the list of news
         return newsList;

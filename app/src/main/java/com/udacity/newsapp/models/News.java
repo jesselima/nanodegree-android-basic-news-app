@@ -11,9 +11,8 @@ public class News {
     private String webURL;
     private String apiURL;
     private String contributors;
-    private String thumbnailURL;
 
-    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String contributors, String thumbnailURL) {
+    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String contributors) {
         this.id = id;
         this.type = type;
         this.sectionName = sectionName;
@@ -22,7 +21,6 @@ public class News {
         this.webURL = webURL;
         this.webURL = apiURL;
         this.contributors = contributors;
-        this.thumbnailURL = thumbnailURL;
     }
 
     public String getId() {
@@ -87,14 +85,6 @@ public class News {
 
     public void setContributors(String contributors) {
         this.contributors = contributors;
-    }
-
-    public String getThumbnailURL() {
-        return thumbnailURL;
-    }
-
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
     }
 
 }

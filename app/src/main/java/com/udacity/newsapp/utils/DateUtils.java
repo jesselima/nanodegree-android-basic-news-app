@@ -5,10 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- *
- *
- */
+
 public final class DateUtils {
 
     /**
@@ -71,6 +68,19 @@ public final class DateUtils {
     private static String selectedDatePattern(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.ENGLISH);
         return dateFormat.format(dateObject);
+    }
+
+    // Return as date as a String "yyyy-DD-dd".
+    public static String buildMyDate(int year, int month, int day){
+
+        StringBuilder stringBuilderDate = new StringBuilder();
+        stringBuilderDate.append(year);
+        stringBuilderDate.append("-");
+        stringBuilderDate.append(month);
+        stringBuilderDate.append("-");
+        stringBuilderDate.append(day);
+
+        return stringBuilderDate.toString();
     }
 
 }

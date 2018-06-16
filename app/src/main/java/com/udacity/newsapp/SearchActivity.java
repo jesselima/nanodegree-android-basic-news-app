@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.udacity.newsapp.utils.DateUtils;
 
@@ -26,8 +27,8 @@ public class SearchActivity extends AppCompatActivity {
     private static final String CONST_TO_DATE_KEY = "to-date";
     private static final String CONST_Q_KEY = "q";
 
-    private TextView fromDateSelected;
-    private TextView toDateSelected;
+    private TextView textViewFromDateSelected;
+    private TextView textViewToDateSelected;
     private DatePickerDialog datePickerDialog;
 
     private int currentYear;
@@ -38,6 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     private String q,fromDate, toDate, fullFromDate, fullToDate;
     private String orderBy = "";
 
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +50,19 @@ public class SearchActivity extends AppCompatActivity {
         final EditText searchTerms = findViewById(R.id.search_q);
 
         /* Date picker implementation */
-
-        LinearLayout linearLayoutPickFromDate = findViewById(R.id.from_date);
-        fromDateSelected = findViewById(R.id.from_date_selected);
-
-        LinearLayout linearLayoutPickToDate = findViewById(R.id.to_date);
-        toDateSelected = findViewById(R.id.to_date_selected);
-
         Calendar calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
         currentMonth = calendar.get(Calendar.MONTH);
         currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        fromDateSelected.setText(R.string.no_date_selected);
+        textViewFromDateSelected = findViewById(R.id.from_date_selected);
+        textViewFromDateSelected.setText(DateUtils.datePickerFormat(DateUtils.buildMyDate(currentYear, (currentMonth), currentDayOfMonth)));// ONE MONTH AGO FROM TODAY.
+
+        textViewToDateSelected = findViewById(R.id.to_date_selected);
+        textViewToDateSelected.setText(DateUtils.datePickerFormat(DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentDayOfMonth)));// TODAY!!!
+
+        fromDate = DateUtils.buildMyDate(currentYear, currentMonth, currentMonth);
+        LinearLayout linearLayoutPickFromDate = findViewById(R.id.from_date);
         linearLayoutPickFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,22 +70,17 @@ public class SearchActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            StringBuilder date = new StringBuilder();
-                                date.append(year);
-                                date.append(getString(R.string.dash));
-                                date.append(month + 1);
-                                date.append(getString(R.string.dash));
-                                date.append(day);
-                            fullFromDate = String.valueOf(date);
-                            fromDateSelected.setText(DateUtils.datePickerFormat(fullFromDate));
-                            fromDate = String.valueOf(fullFromDate);
+                            fullFromDate = DateUtils.buildMyDate(year, month, day); // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDate)); // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                         }
-                    }, currentYear, currentMonth, currentDayOfMonth);
+                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
+
                 datePickerDialog.show();
             }
         });
 
-        toDateSelected.setText(R.string.no_date_selected);
+        toDate = DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentMonth);
+        LinearLayout linearLayoutPickToDate = findViewById(R.id.to_date);
         linearLayoutPickToDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,17 +88,10 @@ public class SearchActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                StringBuilder date = new StringBuilder();
-                                    date.append(year);
-                                    date.append(getString(R.string.dash));
-                                    date.append(month + 1);
-                                    date.append(getString(R.string.dash));
-                                    date.append(day);
-                                fullToDate = String.valueOf(date);
-                                toDateSelected.setText(DateUtils.datePickerFormat(fullToDate)); // fullToDate is a String date with this pattern: "yyyy-MM-dd"
-                                toDate = String.valueOf(fullToDate);
+                                fullFromDate = DateUtils.buildMyDate(year, month, day);
+                                textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDate));
                             }
-                        }, currentYear, currentMonth, currentDayOfMonth);
+                        }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
                 datePickerDialog.show();
             }
         });
@@ -113,7 +103,12 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 orderBy = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
-                q = searchTerms.getText().toString();
+                String searchInput = searchTerms.getText().toString();
+                if (searchInput.isEmpty()){
+                    doToast("Please, type one or more terms.");
+                    return;
+                }
+                q = searchInput;
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
                     intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
@@ -126,5 +121,13 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     } // Close onCreate method
+
+    private void doToast(String string){
+        if (toast != null){
+            toast.cancel();
+        }
+        toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
 }
