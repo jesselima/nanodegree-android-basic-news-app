@@ -29,10 +29,6 @@ public class SearchActivity extends AppCompatActivity {
     private static final String CONST_TO_DATE_KEY = "to-date";
     private static final String CONST_Q_KEY = "q";
 
-
-    private LinearLayout linearLayoutPickFromDate;
-    private LinearLayout linearLayoutPickToDate;
-
     private TextView fromDateSelected;
     private TextView toDateSelected;
     private DatePickerDialog datePickerDialog;
@@ -40,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     private int currentYear;
     private int currentMonth;
     private int currentDayOfMonth;
-    private Calendar calendar;
+//    private Calendar calendar;
 
     /* Strings to be used in Advanced search */
     private String q,fromDate, toDate, fullFromDate, fullToDate;
@@ -57,13 +53,13 @@ public class SearchActivity extends AppCompatActivity {
 
         /* Date picker implementation */
 
-        linearLayoutPickFromDate = findViewById(R.id.from_date);
+        LinearLayout linearLayoutPickFromDate = findViewById(R.id.from_date);
         fromDateSelected = findViewById(R.id.from_date_selected);
 
-        linearLayoutPickToDate = findViewById(R.id.to_date);
+        LinearLayout linearLayoutPickToDate = findViewById(R.id.to_date);
         toDateSelected = findViewById(R.id.to_date_selected);
 
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
         currentMonth = calendar.get(Calendar.MONTH);
         currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
@@ -134,15 +130,5 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     } // Close onCreate method
-
-    /**
-     * This method receives the date (data type Date) as input parameter and
-     * @param dateObject is the date to be formatted.
-     * @return a string with the date formatted according to the SimpleDateFormat method pattern.
-     */
-    private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
-    }
 
 }
