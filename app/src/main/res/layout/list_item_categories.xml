@@ -3,28 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_16"
-    android:padding="@dimen/margin_8"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_8">
 
     <ImageView
         android:id="@+id/image_view_section"
-        android:layout_gravity="center"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginStart="@dimen/margin_16"
+        android:contentDescription="@string/section_image"
         tools:src="@drawable/ic_games" />
 
     <TextView
         android:id="@+id/text_view_section_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_16"
-        android:layout_marginTop="@dimen/margin_8"
+        android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin_8"
         android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8"
         android:textAllCaps="true"
+        android:textSize="@dimen/text_size_16"
         android:textStyle="bold"
-        android:layout_gravity="center"
         tools:text="Games"/>
 
 </LinearLayout>

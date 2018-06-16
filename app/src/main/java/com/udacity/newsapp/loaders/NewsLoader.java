@@ -3,10 +3,11 @@ package com.udacity.newsapp.loaders;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.udacity.newsapp.utils.QueryUtils;
 import com.udacity.newsapp.models.News;
 
 import java.util.List;
+
+import static com.udacity.newsapp.utils.QueryUtils.fetchNewsData;
 
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
@@ -15,7 +16,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
     private static final String LOG_TAG = NewsLoader.class.getName();
 
     /** Query URL */
-    private String mUrl;
+    private final String mUrl;
 
     /**
      * Constructs a new {@link NewsLoader}.
@@ -44,7 +45,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
         }
 
         // Perform the network request, parse the response, and extract a list of News.
-        List<News> newsList = QueryUtils.fetchNewsData(mUrl);
-        return newsList;
+        // fetchNewsData() is a method from QueryUtils class.
+        return fetchNewsData(mUrl);
     }
 }

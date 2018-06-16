@@ -22,7 +22,7 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        final ArrayList<NewsCategory> categoriesList = new ArrayList<NewsCategory>();
+        final ArrayList<NewsCategory> categoriesList = new ArrayList<>();
 
             categoriesList.add(new NewsCategory(getString(R.string.technology_section_id), getString(R.string.technology_section_name), R.drawable.ic_technology));
             categoriesList.add(new NewsCategory(getString(R.string.games_section_id), getString(R.string.games_section_name), R.drawable.ic_games));

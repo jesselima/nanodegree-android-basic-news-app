@@ -26,8 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_term_example"
-            android:maxLines="1"
             android:inputType="textShortMessage"
+            android:maxLines="1"
             android:theme="@style/SearchEditText" />
     </android.support.design.widget.TextInputLayout>
 
@@ -102,6 +102,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="@dimen/margin_8"
+                android:contentDescription="@string/select_a_date"
                 android:src="@drawable/ic_calendar"/>
             <TextView
                 android:id="@+id/from_date_selected"
@@ -131,6 +132,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="@dimen/margin_8"
+                android:contentDescription="@string/select_a_date"
                 android:src="@drawable/ic_calendar"/>
             <TextView
                 android:id="@+id/to_date_selected"

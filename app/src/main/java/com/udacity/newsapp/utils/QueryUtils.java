@@ -37,7 +37,7 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the The Guardin News API data and return a list of {@link News} objects.
+     * Query the The Guardian News API data and return a list of {@link News} objects.
      * @param requestUrl is the URL request to the API.
      * @return a list of News.
      */
@@ -55,10 +55,8 @@ public final class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link News}
-        List<News> newsList = extractFeatureFromJson(jsonResponse);
-
         // Return the list of {@link News}
-        return newsList;
+        return extractFeatureFromJson(jsonResponse);
     }
 
     /**

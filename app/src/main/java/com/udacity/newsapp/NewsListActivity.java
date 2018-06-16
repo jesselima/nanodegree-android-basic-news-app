@@ -57,7 +57,6 @@ public class NewsListActivity extends AppCompatActivity
     private String toDate = "2017-01-30";
     private String orderBy = "newest";
     private String page = "1";
-    private String pageSize = "20";
     private String q = "";
     private int pageNumber = 1;
 
@@ -66,7 +65,7 @@ public class NewsListActivity extends AppCompatActivity
     private NewsAdapter newsAdapter;
     private TextView mEmptyStateTextView, textViewNoResultsFound;
 
-    Toast toast;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,19 +168,18 @@ public class NewsListActivity extends AppCompatActivity
     }
 
     /* Pagination forward control */
-    public void paginationForward(){
-        int pageNumber = Integer.parseInt(String.valueOf(page));
+    private void paginationForward(){
+        pageNumber = Integer.parseInt(String.valueOf(page));
         pageNumber++;
         page = String.valueOf(pageNumber);
         doToast(getString(R.string.page) + String.valueOf(pageNumber));
         restartLoaderNews();
     }
     /* Pagination backward control */
-    public void paginationBackward(){
-        int pageNumber = Integer.parseInt(String.valueOf(page));
+    private void paginationBackward(){
+        pageNumber = Integer.parseInt(String.valueOf(page));
         if (pageNumber == 1){
             page = String.valueOf(pageNumber);
-            restartLoaderNews();
             doToast(getString(R.string.warning_you_are_at_page_one));
         }else {
             pageNumber--;
@@ -191,7 +189,7 @@ public class NewsListActivity extends AppCompatActivity
         }
     }
 
-    public void doToast(String string){
+    private void doToast(String string){
         if (toast != null){
             toast.cancel();
         }
@@ -202,7 +200,7 @@ public class NewsListActivity extends AppCompatActivity
 
     /* Methods for LoaderCallbacks<List<News>> */
 
-    public void restartLoaderNews(){
+    private void restartLoaderNews(){
         // Clear the ListView as a new query will be kicked off
         newsAdapter.clear();
         // Hide the empty state text view as the loading indicator will be displayed
@@ -220,6 +218,7 @@ public class NewsListActivity extends AppCompatActivity
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
+        String pageSize = "30";
         String API_KEY =  MyApiKey.getApiKey();
         String BASE_URL =  MyApiKey.getBaseUrl();
 
@@ -280,7 +279,7 @@ public class NewsListActivity extends AppCompatActivity
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No news found."
-        mEmptyStateTextView.setText("No news!");
+        mEmptyStateTextView.setText(R.string.no_news);
 
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the ListView to update.

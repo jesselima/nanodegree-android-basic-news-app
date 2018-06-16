@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">News App</string>
-    <string name="from_date">A partir da data:</string>
-    <string name="to_date">Até a data:</string>
-    <string name="from_1_to_50">de 1 a 50</string>
-    <string name="search">Pesquisar</string>
-    <string name="news">Notícias</string>
-    <string name="categories">Categorias</string>
-    <string name="no_internet_connection">Sem conexão com internet</string>
-    <string name="warning_you_are_at_page_one">Você está na página 1</string>
-    <string name="page">Página</string>
-    <string name="unknown_date">Data desconhecida</string>
-    <string name="type_a_term_to_search">Digite um ou mais termos de busca</string>
-    <string name="search_term_example">use vírgula entre os termos. ex. google,apple,…</string>
-    <string name="oldest">Mais antigas</string>
-    <string name="no_date_selected">Selecione uma data.</string>
-    <string name="order_by">Ordenar por:</string>
+    <string name="unknown_date">Unknown date</string>
+    <string name="type_a_term_to_search">Type one or more terms to search</string>
+    <string name="search_term_example">Use commas between values. i.e. google,apple,…</string>
+    <string name="order_by">Order By:</string>
+    <string name="from_date">From Date:</string>
+    <string name="to_date">To Date:</string>
+    <string name="search">Search</string>
+    <string name="news">News</string>
+    <string name="categories">Categories</string>
+    <string name="no_date_selected">Select a date.</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="warning_you_are_at_page_one">You are at page 1.</string>
+    <string name="page">Page\u0020</string>
+    <string name="the_list_is_empty">The list is empty.</string>
+    <string name="no_news_found">No news found</string>
+    <string name="go">GO!!!</string>
+    <string name="previous_page">Previous Page</string>
+    <string name="next_page">Next Page</string>
+    <string name="section_image">Section Image</string>
+    <string name="select_a_date">Select a date</string>
+    <string name="no_news">No news!</string>
 </resources>
