@@ -206,32 +206,22 @@ public final class QueryUtils {
                     apiURL = currentNewsResult.getString("apiURL");
                 }
 
-                String pillarName = "";
-                if (currentNewsResult.has("pillarName")) {
-                    pillarName = currentNewsResult.getString("pillarName");
-                }
-
-                // Inside each News item, I access its array called "tags".
-
                 StringBuilder authors = new StringBuilder();
-                String currentContributor = "";
+                String currentContributor;
+                for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
 
-                if (tagsArrayCurrentNews.length() > 0) {
-                    for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
+                    JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
+                    currentContributor = currentTagObject.getString("webTitle");
+                    authors.append(currentContributor);
 
-                        JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
-
-                        currentContributor = currentTagObject.getString("webTitle");
-
-                        // If there is only one contributor adds a dot.
-                        if (tagsArrayCurrentNews.length() == 1){
-                            currentContributor += ".";
-                        }else if (tagsArrayCurrentNews.length() > 1){
-                            currentContributor += ", ";
-                        }else{
-                            currentContributor += ".";
-                        }
-                        authors.append(currentContributor);
+                    if(tagsArrayCurrentNews.length() == 1 ) {
+                        authors.append(".");
+                    }
+                    else if (t < tagsArrayCurrentNews.length() && t+1 < tagsArrayCurrentNews.length() ){
+                        authors.append(", ");
+                    }
+                    else /*if (t + 1 == tagsArrayCurrentNews.length() )*/{
+                        authors.append(".");
                     }
                 }
                 String contributors = String.valueOf(authors);
