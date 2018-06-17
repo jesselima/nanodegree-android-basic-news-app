@@ -5,6 +5,7 @@
     <string name="type_a_term_to_search">Type one or more terms to search</string>
     <string name="search_term_example">Use commas between values. i.e. google,apple,…</string>
     <string name="order_by">Order By:</string>
+    <string name="by">By:\u0020</string>
     <string name="from_date">From Date:</string>
     <string name="to_date">To Date:</string>
     <string name="search">Search</string>
@@ -12,7 +13,7 @@
     <string name="categories">Categories</string>
     <string name="no_date_selected">Select a date.</string>
     <string name="no_internet_connection">No internet connection!</string>
-    <string name="warning_you_are_at_page_one">You are at page 1.</string>
+    <string name="warning_you_are_at_page_one">This is page 1</string>
     <string name="page">Page\u0020</string>
     <string name="the_list_is_empty">The list is empty.</string>
     <string name="no_news_found">No news found</string>
@@ -20,6 +21,6 @@
     <string name="previous_page">Previous Page</string>
     <string name="next_page">Next Page</string>
     <string name="section_image">Section Image</string>
-    <string name="select_a_date">Select a date</string>
+    <string name="select_a_date">or select a date</string>
     <string name="no_news">No news!</string>
 </resources>

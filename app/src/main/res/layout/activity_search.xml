@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/type_a_term_to_search"
-        android:textSize="@dimen/text_size_16"
+        android:textSize="@dimen/text_size_sub_heading_16"
         android:textStyle="bold"/>
 
     <android.support.design.widget.TextInputLayout
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/order_by"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_sub_heading_16"
             android:textStyle="bold"/>
         <RadioGroup
             android:id="@+id/search_radio_group"
@@ -59,17 +59,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/newest"/>
+                android:text="@string/newest"
+                android:textSize="@dimen/text_size_sub_heading_16"/>
             <RadioButton
                 android:id="@+id/search_radio_relevant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/relevance"/>
+                android:text="@string/relevance"
+                android:textSize="@dimen/text_size_sub_heading_16"/>
             <RadioButton
                 android:id="@+id/search_radio_oldest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/oldest"/>
+                android:text="@string/oldest"
+                android:textSize="@dimen/text_size_sub_heading_16"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -108,9 +111,19 @@
                 android:id="@+id/from_date_selected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_4"
                 android:textAllCaps="false"
                 android:textSize="@dimen/text_size_16"
+                android:textStyle="italic|bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginTop="@dimen/margin_4"
+                android:text="@string/select_a_date"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_sub_heading_16"
                 android:textStyle="italic"/>
         </LinearLayout>
 
@@ -138,9 +151,19 @@
                 android:id="@+id/to_date_selected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_4"
                 android:textAllCaps="false"
                 android:textSize="@dimen/text_size_16"
+                android:textStyle="italic|bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:layout_marginTop="@dimen/margin_4"
+                android:text="@string/select_a_date"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_sub_heading_16"
                 android:textStyle="italic"/>
         </LinearLayout>
 

@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     private int currentDayOfMonth;
 
     /* Strings to be used in Advanced search */
-    private String q,fromDate, toDate, fullFromDate, fullToDate;
+    private String q,fromDate, toDate, fullFromDateString, fullToDateString;
     private String orderBy = "";
 
     private Toast toast;
@@ -70,8 +70,8 @@ public class SearchActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            fullFromDate = DateUtils.buildMyDate(year, month, day); // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDate)); // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
+                            fullFromDateString = DateUtils.buildMyDate(year, month, day); // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString)); // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                         }
                     }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
 
@@ -85,13 +85,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 datePickerDialog = new DatePickerDialog(SearchActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                fullFromDate = DateUtils.buildMyDate(year, month, day);
-                                textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDate));
-                            }
-                        }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                            fullToDateString = DateUtils.buildMyDate(year, month, day);
+                            textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDateString));
+                        }
+                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
                 datePickerDialog.show();
             }
         });
