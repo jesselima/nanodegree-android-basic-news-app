@@ -50,18 +50,26 @@ public class SearchActivity extends AppCompatActivity {
         final EditText searchTerms = findViewById(R.id.search_q);
 
         /* Date picker implementation */
+
+        /* Creates variables with the current year, month and day of the month */
         Calendar calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
         currentMonth = calendar.get(Calendar.MONTH);
         currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
+        /* Creates a reference to the TextView where the from-date is show in the UI */
         textViewFromDateSelected = findViewById(R.id.from_date_selected);
+        /* Set the from date TextView with the date 30 days backward from the current date  */
         textViewFromDateSelected.setText(DateUtils.datePickerFormat(DateUtils.buildMyDate(currentYear, (currentMonth), currentDayOfMonth)));// ONE MONTH AGO FROM TODAY.
 
+        /* Creates a reference to the TextView where the to-date is show in the UI */
         textViewToDateSelected = findViewById(R.id.to_date_selected);
+        /* Set the from date TextView with the current date  */
         textViewToDateSelected.setText(DateUtils.datePickerFormat(DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentDayOfMonth)));// TODAY!!!
 
+        /* Update the pre selected date to be used as search parameter if the user do not select one specific date */
         fromDate = DateUtils.buildMyDate(currentYear, currentMonth, currentMonth);
+        /* Implementation of date picker. If the user clicks in the vertical LinearLayout ViewGroup that holds from data info the DatePicker dialog shows up. */
         LinearLayout linearLayoutPickFromDate = findViewById(R.id.from_date);
         linearLayoutPickFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +78,10 @@ public class SearchActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            fullFromDateString = DateUtils.buildMyDate(year, month, day); // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString)); // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
+                            // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                            fullFromDateString = DateUtils.buildMyDate(year, month, day);
+                            // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
+                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString));
                         }
                     }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
 
@@ -79,7 +89,9 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+        /* Update the pre selected date to be used as search parameter if the user do not select one specific date. By default the will be the current date. */
         toDate = DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentMonth);
+        /* Implementation of date picker. If the user clicks in the vertical LinearLayout ViewGroup that holds from data info the DatePicker dialog shows up. */
         LinearLayout linearLayoutPickToDate = findViewById(R.id.to_date);
         linearLayoutPickToDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +134,10 @@ public class SearchActivity extends AppCompatActivity {
 
     } // Close onCreate method
 
+    /**
+     * Thia method makes the reuse of toast object to avoid toasts queue
+     * @param string is the text you want to show in the toast
+     */
     private void doToast(String string){
         if (toast != null){
             toast.cancel();

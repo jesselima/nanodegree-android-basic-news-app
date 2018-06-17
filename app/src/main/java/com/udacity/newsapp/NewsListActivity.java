@@ -189,6 +189,10 @@ public class NewsListActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Thia method makes the reuse of toast object to avoid toasts queue
+     * @param string is the text you want to show in the toast
+     */
     private void doToast(String string){
         if (toast != null){
             toast.cancel();
@@ -225,6 +229,7 @@ public class NewsListActivity extends AppCompatActivity
         Uri baseUri = Uri.parse(BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
+        /* This is the default Url loaded when the NewsListActivity opens or when the "News item in BottonNavigationView is clicked */
         if (searchType.equals("default")) {
             uriBuilder.appendQueryParameter(CONST_ORDER_BY, orderBy);
             uriBuilder.appendQueryParameter(CONST_PAGE, page);
@@ -236,6 +241,7 @@ public class NewsListActivity extends AppCompatActivity
             Log.v("Requested URL: ", uriBuilder.toString());
         }
 
+        /* When the user clicks in a category item this query string takes action */
         if (searchType.equals("category")) {
             uriBuilder.appendQueryParameter(CONST_SECTION, sectionId);
             uriBuilder.appendQueryParameter(CONST_ORDER_BY, orderBy);
@@ -248,6 +254,7 @@ public class NewsListActivity extends AppCompatActivity
             Log.v("Requested URL: ", uriBuilder.toString());
         }
 
+        /* When the user request advanced search this query string takes action with the search parameters from SearchActivity */
         if (searchType.equals("advanced")) {
             uriBuilder.appendQueryParameter(CONST_FROM_DATE, fromDate);
             uriBuilder.appendQueryParameter(CONST_TO_DATE, toDate);

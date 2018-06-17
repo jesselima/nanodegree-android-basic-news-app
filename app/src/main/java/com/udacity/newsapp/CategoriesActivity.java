@@ -24,6 +24,8 @@ public class CategoriesActivity extends AppCompatActivity {
 
         final ArrayList<NewsCategory> categoriesList = new ArrayList<>();
 
+            /* Icons image from Icons https://www.freepik.com and https://www.kisspng.com */
+
             categoriesList.add(new NewsCategory(getString(R.string.technology_section_id), getString(R.string.technology_section_name), R.drawable.ic_technology));
             categoriesList.add(new NewsCategory(getString(R.string.games_section_id), getString(R.string.games_section_name), R.drawable.ic_games));
             categoriesList.add(new NewsCategory(getString(R.string.business_section_id), getString(R.string.business_section_name), R.drawable.ic_business));
