@@ -7,10 +7,8 @@ package com.udacity.newsapp.privatedata;
 public class MyApiKey {
 
     // TODO: Paste you API KEY in "test" string value instead.
-    private static final String API_KEY = "test";
-
+    private static final String API_KEY = "d2c90caa-dfa8-4acc-aad6-3021f69440b8";
     private static final String BASE_URL = "https://content.guardianapis.com/search";
-    private static final String BASE_URL_NEWS_DETAILS = "https://content.guardianapis.com/";
     private static final String BASE_URL_WEB_NEWS_URL = "https://www.theguardian.com/";
 
     public static String getApiKey() {
@@ -19,10 +17,6 @@ public class MyApiKey {
 
     public static String getBaseUrl() {
         return BASE_URL;
-    }
-
-    public static String getBaseUrlNewsDetails() {
-        return BASE_URL_NEWS_DETAILS;
     }
 
     public static String getBaseWebUrlNews() {

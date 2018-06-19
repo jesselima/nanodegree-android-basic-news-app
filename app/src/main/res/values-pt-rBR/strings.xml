@@ -23,4 +23,8 @@
     <string name="section_image">Section Image</string>
     <string name="select_a_date">or select a date</string>
     <string name="no_news">No news!</string>
+    <string name="type_a_term">Please, type one or more terms.</string>
+    <string name="internet_connection_inactive">Internet connection inactive</string>
+    <string name="you_are_not_connected_to_the_internet">You are not connected to the internet :/</string>
+    <string name="check_your_connection">Please, check your internet connection</string>
 </resources>

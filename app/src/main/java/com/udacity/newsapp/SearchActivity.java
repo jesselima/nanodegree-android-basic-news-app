@@ -1,9 +1,12 @@
 package com.udacity.newsapp;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -49,7 +52,14 @@ public class SearchActivity extends AppCompatActivity {
         final RadioGroup radioGroup = findViewById(R.id.search_radio_group);
         final EditText searchTerms = findViewById(R.id.search_q);
 
-        /* Date picker implementation */
+        /*
+         *  DATE PICKER IMPLEMENTATION AUTHORING WARNING
+         *  The basic guideline for this implementation was from YouTube:
+         *  Title: Android Datepicker – Using Datepickerdialog With Button (Explained)
+         *  Publisher: Coding Demos
+         *  Published date: Feb 23, 2018
+         *  Url: https://www.youtube.com/watch?v=CNGLsYPZd_o
+         * */
 
         /* Creates variables with the current year, month and day of the month */
         Calendar calendar = Calendar.getInstance();
@@ -79,12 +89,11 @@ public class SearchActivity extends AppCompatActivity {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            fullFromDateString = DateUtils.buildMyDate(year, month, day);
+                            fullFromDateString = DateUtils.buildMyDate(year, month + 1, day);
                             // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                             textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString));
                         }
-                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
-
+                    }, currentYear, (currentMonth - 1), currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
             }
         });
@@ -100,10 +109,12 @@ public class SearchActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            fullToDateString = DateUtils.buildMyDate(year, month, day);
+                            // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                            fullToDateString = DateUtils.buildMyDate(year, month +1, day); // set "to-date" with TODAY date.
+                            // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                             textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDateString));
                         }
-                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker dialog.
+                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
             }
         });
@@ -116,8 +127,13 @@ public class SearchActivity extends AppCompatActivity {
 
                 orderBy = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
                 String searchInput = searchTerms.getText().toString();
+
+                if (!checkInternetConnection()){
+                    doToast(getString(R.string.check_your_connection));
+                    return;
+                }
                 if (searchInput.isEmpty()){
-                    doToast("Please, type one or more terms.");
+                    doToast(getString(R.string.type_a_term));
                     return;
                 }
                 q = searchInput;
@@ -144,6 +160,15 @@ public class SearchActivity extends AppCompatActivity {
         }
         toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+
+    public boolean checkInternetConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
     }
 
 }

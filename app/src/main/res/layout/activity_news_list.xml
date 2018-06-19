@@ -23,29 +23,30 @@
             android:orientation="vertical"
             android:paddingBottom="4dp"/>
 
-        <!-- Visible when no news were found. -->
-        <TextView
-            android:id="@+id/no_news_found_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="60dp"
-            android:gravity="center"
-            android:text="@string/no_news_found"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:visibility="gone" />
     </LinearLayout>
 
     <!-- Includes the Bottom Navigation View  in the activity layout -->
     <include layout="@layout/botton_nav"/>
 
+    <!-- WARNING WHEN THERE IS NO INTERNET CONNECTION -->
+    <ImageView
+        android:id="@+id/image_view_connection_inactive"
+        android:visibility="gone"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/internet_connection_inactive"
+        android:src="@drawable/ic_connection_inactive"/>
     <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_view_no__connection"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        android:layout_below="@id/image_view_connection_inactive"
+        android:gravity="center"
+        android:text="@string/you_are_not_connected_to_the_internet"
+        android:textSize="@dimen/text_size_16"
+        android:visibility="gone" />
 
     <!-- If the list of news is empty this message is shown -->
     <TextView
@@ -58,6 +59,26 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:visibility="gone"/>
+
+    <!--  WARNING WHEN THERE IS NO NEWS RESULTS -->
+    <ImageView
+        android:id="@+id/image_view_no_results_found"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/internet_connection_inactive"
+        android:src="@drawable/ic_no_news_no_background"/>
+    <TextView
+        android:id="@+id/no_news_found_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="80dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/no_news_found"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="gone" />
 
     <!-- Loading indicator for user feedback between queries to get news from The Guardian API -->
     <ProgressBar

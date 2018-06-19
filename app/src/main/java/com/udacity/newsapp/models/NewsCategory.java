@@ -17,28 +17,17 @@ public class NewsCategory {
         this.sectionImageResId = sectionImageResId;
     }
 
-    /* Getters and Setters */
+    /* Getters Methods */
     public String getSectionId() {
         return sectionId;
-    }
-
-    public void setSectionId(String sectionId) {
-        this.sectionId = sectionId;
     }
 
     public String getSectionName() {
         return sectionName;
     }
 
-    public void setSectionName(String sectionName) {
-        this.sectionName = sectionName;
-    }
-
     public int getSectionImageResId() {
         return sectionImageResId;
     }
 
-    public void setSectionImageResId(int sectionImageResId) {
-        this.sectionImageResId = sectionImageResId;
-    }
 }

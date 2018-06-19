@@ -35,56 +35,20 @@ public class News {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getSectionName() {
         return sectionName;
-    }
-
-    public void setSectionName(String sectionName) {
-        this.sectionName = sectionName;
     }
 
     public String getWebPublicationDate() {
         return webPublicationDate;
     }
 
-    public void setWebPublicationDate(String webPublicationDate) {
-        this.webPublicationDate = webPublicationDate;
-    }
-
     public String getWebTitle() {
         return webTitle;
     }
 
-    public void setWebTitle(String webTitle) {
-        this.webTitle = webTitle;
-    }
-
-    public String getWebURL() {
-        return webURL;
-    }
-
-    public void setWebURL(String webURL) {
-        this.webURL = webURL;
-    }
-
-    public String getApiURL() {
-        return apiURL;
-    }
-
-    public void setApiURL(String apiURL) {
-        this.apiURL = apiURL;
-    }
-
     public String getContributors() {
         return contributors;
-    }
-
-    public void setContributors(String contributors) {
-        this.contributors = contributors;
     }
 
 }
