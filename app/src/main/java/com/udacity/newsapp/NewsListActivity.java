@@ -71,6 +71,7 @@ public class NewsListActivity extends AppCompatActivity
     private TextView textViewNoResultsFound, textViewNoInternetConnection;
     private ImageView imageViewNoResultsFound, imageViewNoInternetConnection;
 
+    private boolean isNewsListEmpty;
 
     private View loadingIndicator;
     private Toast toast;
@@ -171,7 +172,7 @@ public class NewsListActivity extends AppCompatActivity
             }
         });
 
-    // Close onCreate
+    /* Close onCreate */
     }
 
     /**
@@ -186,10 +187,20 @@ public class NewsListActivity extends AppCompatActivity
         }
     }
 
+//    String pageE = String.valueOf(pageNumber);
+//    int pageNumber = Integer.parseInt(String.valueOf(page));
+
+
     /* Pagination forward control */
     private void paginationForward(){
         if (!checkInternetConnection()){
             doToast(getString(R.string.check_your_connection));
+        }else if (isNewsListEmpty || pageNumber < 30){
+            Log.v("isNewsListEmpty: ", "YEEEEEEEES");
+            hideListView();
+            showNoResultsWarning();
+            textViewNoResultsFound.setText(R.string.no_more_news_in_this_list);
+            doToast(getString(R.string.no_more_news));
         }else {
             pageNumber = Integer.parseInt(String.valueOf(page));
             pageNumber++;
@@ -197,12 +208,15 @@ public class NewsListActivity extends AppCompatActivity
             doToast(getString(R.string.page) + String.valueOf(pageNumber));
             restartLoaderNews();
         }
+
     }
     /* Pagination backward control */
     private void paginationBackward(){
         if (!checkInternetConnection()){
             doToast(getString(R.string.check_your_connection));
         }else {
+            hideNoResultsWarning();
+            showListView();
             pageNumber = Integer.parseInt(String.valueOf(page));
             if (!checkInternetConnection()){
                 doToast(getString(R.string.check_your_connection));
@@ -311,11 +325,19 @@ public class NewsListActivity extends AppCompatActivity
         hideLoadingIndicator();
         hideConnectionWarning();
 
+        if (newsList == null || newsList.isEmpty()){
+            isNewsListEmpty = true;
+        }
+
+
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (newsList != null && !newsList.isEmpty()) {
             // Clear the adapter object before add the new list into it.
             newsAdapter.clear();
+
+            Log.v("News List Size: ", String.valueOf(newsList.size()));
+
 
             newsListView.setVisibility(View.VISIBLE);
             // Hide the warnings for "no news results" or
@@ -334,6 +356,7 @@ public class NewsListActivity extends AppCompatActivity
                 Log.v("onLoadFinished", "showNoResultsWarning method CALLED!");
             }
         }
+
     }
 
     /**
@@ -387,6 +410,12 @@ public class NewsListActivity extends AppCompatActivity
     }
     private void hideLoadingIndicator(){
         loadingIndicator.setVisibility(View.GONE);
+    }
+    private void showListView(){
+        newsListView.setVisibility(View.VISIBLE);
+    }
+    private void hideListView(){
+        newsListView.setVisibility(View.GONE);
     }
     private void showConnectionWarning(){
         imageViewNoInternetConnection.setVisibility(View.VISIBLE);

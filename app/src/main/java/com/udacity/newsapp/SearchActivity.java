@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -78,7 +79,7 @@ public class SearchActivity extends AppCompatActivity {
         textViewToDateSelected.setText(DateUtils.datePickerFormat(DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentDayOfMonth)));// TODAY!!!
 
         /* Update the pre selected date to be used as search parameter if the user do not select one specific date */
-        fromDate = DateUtils.buildMyDate(currentYear, currentMonth, currentMonth);
+        fromDate = DateUtils.buildMyDate(currentYear, currentMonth, currentDayOfMonth);
         /* Implementation of date picker. If the user clicks in the vertical LinearLayout ViewGroup that holds from data info the DatePicker dialog shows up. */
         LinearLayout linearLayoutPickFromDate = findViewById(R.id.from_date);
         linearLayoutPickFromDate.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +93,8 @@ public class SearchActivity extends AppCompatActivity {
                             fullFromDateString = DateUtils.buildMyDate(year, month + 1, day);
                             // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                             textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString));
+                            // Update the variable "fromDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
+                            fromDate = fullFromDateString;
                         }
                     }, currentYear, (currentMonth - 1), currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
@@ -99,7 +102,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         /* Update the pre selected date to be used as search parameter if the user do not select one specific date. By default the will be the current date. */
-        toDate = DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentMonth);
+        toDate = DateUtils.buildMyDate(currentYear, (currentMonth + 1), currentDayOfMonth);
         /* Implementation of date picker. If the user clicks in the vertical LinearLayout ViewGroup that holds from data info the DatePicker dialog shows up. */
         LinearLayout linearLayoutPickToDate = findViewById(R.id.to_date);
         linearLayoutPickToDate.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +113,11 @@ public class SearchActivity extends AppCompatActivity {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            fullToDateString = DateUtils.buildMyDate(year, month +1, day); // set "to-date" with TODAY date.
+                            fullToDateString = DateUtils.buildMyDate(year, month + 1, day); // set "to-date" with TODAY date.
                             // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
                             textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDateString));
+                            // Update the variable "toDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
+                            toDate = fullToDateString;
                         }
                     }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
@@ -140,7 +145,9 @@ public class SearchActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
                     intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
+                Log.v("fromDate out Search", ">>>>>>>" + fromDate);
                     intent.putExtra(CONST_TO_DATE_KEY, toDate);
+                    Log.v("toDate out Search", ">>>>>>>" + toDate);
                     intent.putExtra(CONST_ORDER_BY_KEY, orderBy);
                     intent.putExtra(CONST_Q_KEY, q);
                     intent.putExtra(CONST_SEARCH_TYPE_KEY, CONST_SEARCH_TYPE_VALUE);
