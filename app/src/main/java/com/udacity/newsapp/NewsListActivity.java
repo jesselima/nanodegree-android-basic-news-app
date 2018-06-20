@@ -160,9 +160,9 @@ public class NewsListActivity extends AppCompatActivity
                     doToast(getString(R.string.check_your_connection));
                 } else {
                     News newsItem = newsAdapter.getItem(position);
-                    String id = Objects.requireNonNull(newsItem).getId();
+                    String newsItemWebUrl = Objects.requireNonNull(newsItem).getWebURL();
                     String BASE_WEB_URL = MyApiKey.getBaseWebUrlNews();
-                    String webUrl = BASE_WEB_URL + id;
+                    String webUrl = BASE_WEB_URL + newsItemWebUrl;
                     openWebPage(webUrl);
                 }
             }

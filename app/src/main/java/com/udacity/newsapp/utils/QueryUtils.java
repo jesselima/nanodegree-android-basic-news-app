@@ -223,7 +223,7 @@ public final class QueryUtils {
                 String contributors = String.valueOf(authors);
 
                 // Instantiate a News class object and add the JSON data as inputs parameters.
-                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, apiURL, contributors);
+                News newsItem = new News(id, type, sectionName, webPublicationDate, webTitle, webURL, contributors);
                 newsList.add(newsItem);
             }
 

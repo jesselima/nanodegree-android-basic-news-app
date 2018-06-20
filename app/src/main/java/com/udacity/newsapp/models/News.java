@@ -9,17 +9,15 @@ public class News {
     private String webPublicationDate;
     private String webTitle;
     private String webURL;
-    private String apiURL;
     private String contributors;
 
-    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL, String apiURL, String contributors) {
+    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL, String contributors) {
         this.id = id;
         this.type = type;
         this.sectionName = sectionName;
         this.webPublicationDate = webPublicationDate;
         this.webTitle = webTitle;
         this.webURL = webURL;
-        this.webURL = apiURL;
         this.contributors = contributors;
     }
 
@@ -45,6 +43,10 @@ public class News {
 
     public String getWebTitle() {
         return webTitle;
+    }
+
+    public String getWebURL() {
+        return webURL;
     }
 
     public String getContributors() {
