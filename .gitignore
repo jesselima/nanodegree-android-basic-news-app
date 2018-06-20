@@ -7,5 +7,5 @@
 .DS_Store
 /build
 /captures
-app/src/main/java/com/udacity/newsapp/privatedata/MyApiKey.java
+/app/src/main/java/com/udacity/newsapp/privatedata/MyApiKey.java
 .externalNativeBuild

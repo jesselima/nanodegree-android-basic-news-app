@@ -6,7 +6,7 @@
 
 # Built application files
 /*/build/
-/src/main/java/com/udacity/newsapp/privatedata/MyApiKey.java
+src/main/java/com/udacity/newsapp/privatedata/MyApiKey.java
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
 

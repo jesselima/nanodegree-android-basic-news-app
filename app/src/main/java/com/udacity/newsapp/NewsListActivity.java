@@ -11,7 +11,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +34,7 @@ public class NewsListActivity extends AppCompatActivity
 
     private static final String LOG_TAG = NewsListActivity.class.getName();
 
-    // Url parameters are set as constant values.
+    /* Url parameters are set as constant values. */
     private static final String CONST_ORDER_BY_KEY = "order-by";
     private static final String CONST_PAGE = "page";
     private static final String CONST_PAGE_SIZE_KEY = "page-size";
@@ -61,7 +60,7 @@ public class NewsListActivity extends AppCompatActivity
     private String page = "1";
     private String q = "";
     private int pageNumber = 1;
-
+    /* Default search type */
     private String searchType = "default";
 
     private NewsAdapter newsAdapter;
@@ -70,9 +69,7 @@ public class NewsListActivity extends AppCompatActivity
     /* Variables to warning the user when need about no news results and no internet connection */
     private TextView textViewNoResultsFound, textViewNoInternetConnection;
     private ImageView imageViewNoResultsFound, imageViewNoInternetConnection;
-
     private boolean isNewsListEmpty;
-
     private View loadingIndicator;
     private Toast toast;
 
@@ -81,17 +78,15 @@ public class NewsListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
 
+        // References for loading indicator
         loadingIndicator = findViewById(R.id.loading_indicator);
-
         // References for UI elements tha warning for no internet connection
         textViewNoInternetConnection = findViewById(R.id.text_view_no__connection);
         imageViewNoInternetConnection = findViewById(R.id.image_view_connection_inactive);
-
         // References for UI elements tha warning for no news results
         textViewNoResultsFound = findViewById(R.id.no_news_found_text);
         imageViewNoResultsFound = findViewById(R.id.image_view_no_results_found);
         // References to the ListView that may be populated with data with data if the request to the server is success and returns any news.
-
         newsListView = findViewById(R.id.list);
 
         /* CHECK INTENT DATA*/
@@ -143,8 +138,6 @@ public class NewsListActivity extends AppCompatActivity
             hideLoadingIndicator();
             hideNoResultsWarning();
             showConnectionWarning();
-            Log.v("onResume", " >>>>>>>>>>>>>> CALLED!");
-
         }else{
             android.app.LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
@@ -155,6 +148,7 @@ public class NewsListActivity extends AppCompatActivity
         newsAdapter = new NewsAdapter(this, new ArrayList<News>());
         newsListView.setAdapter(newsAdapter);
 
+        /* When a item list is clicked the clicked news will be show in the default browser  */
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -187,16 +181,13 @@ public class NewsListActivity extends AppCompatActivity
         }
     }
 
-//    String pageE = String.valueOf(pageNumber);
-//    int pageNumber = Integer.parseInt(String.valueOf(page));
-
-
     /* Pagination forward control */
     private void paginationForward(){
+        /* Check if there is connection before move to the next page */
         if (!checkInternetConnection()){
             doToast(getString(R.string.check_your_connection));
+        /* Check is the next of news is empty and if the current list has less than 30 news (default page-size). So there is no need to load more pages */
         }else if (isNewsListEmpty || pageNumber < 30){
-            Log.v("isNewsListEmpty: ", "YEEEEEEEES");
             hideListView();
             showNoResultsWarning();
             textViewNoResultsFound.setText(R.string.no_more_news_in_this_list);
@@ -212,6 +203,7 @@ public class NewsListActivity extends AppCompatActivity
     }
     /* Pagination backward control */
     private void paginationBackward(){
+        /* Check if there is connection before move to the previous page */
         if (!checkInternetConnection()){
             doToast(getString(R.string.check_your_connection));
         }else {
@@ -247,7 +239,6 @@ public class NewsListActivity extends AppCompatActivity
     /* Methods for LoaderCallbacks<List<News>> */
 
     private void restartLoaderNews(){
-        Log.v("restartLoaderNews", " >>>>>>>>>>>>>> CALLED!");
         // Clear the ListView as a new query will be kicked off
         newsAdapter.clear();
         // Show the loading indicator while new data is being fetched
@@ -261,7 +252,7 @@ public class NewsListActivity extends AppCompatActivity
     */
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-        Log.v("onCreateLoader", " >>>>>>>>>>>>>> CALLED!");
+
         String API_KEY =  MyApiKey.getApiKey();
         String BASE_URL =  MyApiKey.getBaseUrl();
 
@@ -276,8 +267,6 @@ public class NewsListActivity extends AppCompatActivity
             uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
             uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
             uriBuilder.appendQueryParameter(CONST_API_KEY, API_KEY);
-            // Log the requested URL
-            Log.v("Requested DefaultURL: ", uriBuilder.toString());
         }
 
         /* When the user clicks in a category item this query string takes action */
@@ -289,8 +278,6 @@ public class NewsListActivity extends AppCompatActivity
             uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
             uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
             uriBuilder.appendQueryParameter(CONST_API_KEY, API_KEY);
-            // Log the requested URL
-            Log.v("Requested CategoryURL: ", uriBuilder.toString());
         }
 
         /* When the user request advanced search this query string takes action with the search parameters from SearchActivity */
@@ -304,8 +291,6 @@ public class NewsListActivity extends AppCompatActivity
             uriBuilder.appendQueryParameter(CONST_SHOW_FIELDS_KEY, CONST_SHOW_FIELDS_VALUE);
             uriBuilder.appendQueryParameter(CONST_SHOW_TAGS_KEY, CONST_SHOW_TAGS_VALUE);
             uriBuilder.appendQueryParameter(CONST_API_KEY, API_KEY);
-            // Log the requested URL
-            Log.v("Requested AdvancedURL: ", uriBuilder.toString());
         }
 
         return new NewsLoader(this, uriBuilder.toString());
@@ -320,7 +305,6 @@ public class NewsListActivity extends AppCompatActivity
      */
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> newsList) {
-        Log.v("onLoadFinished", " >>>>>>>>>>>>>> CALLED!");
         // Hide loading indicator because the data has been loaded
         hideLoadingIndicator();
         hideConnectionWarning();
@@ -329,34 +313,23 @@ public class NewsListActivity extends AppCompatActivity
             isNewsListEmpty = true;
         }
 
-
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (newsList != null && !newsList.isEmpty()) {
             // Clear the adapter object before add the new list into it.
             newsAdapter.clear();
-
-            Log.v("News List Size: ", String.valueOf(newsList.size()));
-
-
-            newsListView.setVisibility(View.VISIBLE);
+            showListView();
             // Hide the warnings for "no news results" or
-            hideNoResultsWarning();// -----------------------------------------------------------------------_!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            hideNoResultsWarning();
             hideConnectionWarning();
-
             // Add the list of news to the Adapter object
             newsAdapter.addAll(newsList);
-        }else{
+        }else if(!checkInternetConnection()){
             // If the news list is null or empty, hides the ListView and shows "no results found" warning in the UI.
-            if (!checkInternetConnection()){
-                showConnectionWarning();
-                Log.v("onLoadFinished", "showConnectionWarning method CALLED!");
-            }else {
-                showNoResultsWarning();
-                Log.v("onLoadFinished", "showNoResultsWarning method CALLED!");
-            }
+            showConnectionWarning();
+        }else {
+            showNoResultsWarning();
         }
-
     }
 
     /**
@@ -365,7 +338,6 @@ public class NewsListActivity extends AppCompatActivity
      */
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
-        Log.v("onLoaderReset", " >>>>>>>>>>>>>> CALLED!");
         // Loader reset, so we can clear out our existing data.
         newsAdapter.clear();
     }
@@ -373,13 +345,11 @@ public class NewsListActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v("onResume", " >>>>>>>>>>>>>> CALLED!");
         newsAdapter.clear();
         if (!checkInternetConnection()){
             hideLoadingIndicator();
             hideNoResultsWarning();
             showConnectionWarning();
-            Log.v("onResume !internet", " >>>>>>>>>>>>>> CALLED!");
         }
     }
 
@@ -389,7 +359,6 @@ public class NewsListActivity extends AppCompatActivity
         if (!checkInternetConnection()){
             getLoaderManager().destroyLoader(NEWS_LOADER_ID);
         }
-        Log.d("lifecycle",">\n>>>>>>\n>>>>>> onStart invoked\n>>>>>>");
     }
 
     /* HELPER METHODS */
