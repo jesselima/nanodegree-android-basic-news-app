@@ -76,14 +76,14 @@ public final class DateUtils {
     // Return as date as a String "yyyy-DD-dd".
     public static String buildMyDate(int year, int month, int day) {
 
-        StringBuilder stringBuilderDate = new StringBuilder();
-        stringBuilderDate.append(year);
-        stringBuilderDate.append("-");
-        stringBuilderDate.append(month);
-        stringBuilderDate.append("-");
-        stringBuilderDate.append(day);
+        String stringDate = "";
+        stringDate += (year);
+        stringDate += ("-");
+        stringDate += (month);
+        stringDate += ("-");
+        stringDate += (day);
 
-        return stringBuilderDate.toString();
+        return stringDate;
     }
 
 }

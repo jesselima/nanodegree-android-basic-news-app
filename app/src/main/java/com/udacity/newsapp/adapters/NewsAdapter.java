@@ -1,6 +1,7 @@
 package com.udacity.newsapp.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.udacity.newsapp.models.News;
 import com.udacity.newsapp.utils.DateUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * An {@link NewsAdapter} knows how to create a list item layout for each news item
@@ -41,8 +43,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
      * @return a listItemView object represents the inflated layout filled with
      * data for each item in the list on the UI
      */
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         ViewHolder viewHolder;
 
@@ -64,7 +67,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         News currentNews = getItem(position);
 
-        viewHolder.webTitle.setText(currentNews.getWebTitle());
+        viewHolder.webTitle.setText(Objects.requireNonNull(currentNews).getWebTitle());
         viewHolder.contributors.setText(currentNews.getContributors());
         viewHolder.sectionName.setText(currentNews.getSectionName());
         viewHolder.webPublicationDate.setText(DateUtils.newsSimpleDateFormat(currentNews.getWebPublicationDate()));

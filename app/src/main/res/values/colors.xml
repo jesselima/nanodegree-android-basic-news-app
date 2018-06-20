@@ -6,19 +6,4 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorRedAccent">#ff4e33</color>
     <color name="colorLightGrey">#dedede</color>
-    <color name="colorAlpha">#00ffffff</color>
-    <color name="colorCardBackground">#9ed2f7</color>
-
-    <color name="colorTagBusiness">#d27227</color>
-    <color name="colorTagSports">#8f2d1d</color>
-    <color name="colorTagMedia">#028300</color>
-    <color name="colorTagBooks">#973f62</color>
-    <color name="colorTagPolitics">#309c7e</color>
-    <color name="colorTagOpinion">#646464</color>
-    <color name="colorTagCulture">#410b3e</color>
-    <color name="colorTagTech">#ac1fa3</color>
-    <color name="colorTagSociety">#4a4d00</color>
-    <color name="colorTagCities">#60370b</color>
-    <color name="colorTagMusic">#4f00d9</color>
-    <color name="colorTagGames">#005e38</color>
 </resources>

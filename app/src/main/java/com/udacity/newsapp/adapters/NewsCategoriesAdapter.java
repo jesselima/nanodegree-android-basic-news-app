@@ -1,6 +1,7 @@
 package com.udacity.newsapp.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.udacity.newsapp.R;
 import com.udacity.newsapp.models.NewsCategory;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
@@ -20,8 +22,9 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
         super(context, 0, categoriesList);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         ViewHolder viewHolder;
 
@@ -42,7 +45,7 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
 
         NewsCategory currentCategory = getItem(position);
 
-        viewHolder.sectionName.setText(currentCategory.getSectionName());
+        viewHolder.sectionName.setText(Objects.requireNonNull(currentCategory).getSectionName());
         viewHolder.imageViewSection.setImageResource(currentCategory.getSectionImageResId());
 
         return convertView;

@@ -11,6 +11,7 @@ import com.udacity.newsapp.adapters.NewsCategoriesAdapter;
 import com.udacity.newsapp.models.NewsCategory;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class CategoriesActivity extends AppCompatActivity {
@@ -62,7 +63,7 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 NewsCategory newsCategoryItem = categoriesAdapter.getItem(position);
-                String sectionID = newsCategoryItem.getSectionId();
+                String sectionID = Objects.requireNonNull(newsCategoryItem).getSectionId();
                 String sectionName = newsCategoryItem.getSectionName();
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.udacity.newsapp.utils.DateUtils;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -174,7 +175,7 @@ public class SearchActivity extends AppCompatActivity {
     public boolean checkInternetConnection() {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo networkInfo = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
 
         return networkInfo != null && networkInfo.isConnected();
     }

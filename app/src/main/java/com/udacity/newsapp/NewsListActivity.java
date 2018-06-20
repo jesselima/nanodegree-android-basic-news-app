@@ -11,6 +11,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -158,7 +159,7 @@ public class NewsListActivity extends AppCompatActivity
                     doToast(getString(R.string.check_your_connection));
                 } else {
                     News newsItem = newsAdapter.getItem(position);
-                    String id = newsItem.getId();
+                    String id = Objects.requireNonNull(newsItem).getId();
                     String BASE_WEB_URL = MyApiKey.getBaseWebUrlNews();
                     String webUrl = BASE_WEB_URL + id;
                     openWebPage(webUrl);
@@ -376,7 +377,7 @@ public class NewsListActivity extends AppCompatActivity
     public boolean checkInternetConnection() {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo networkInfo = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
 
