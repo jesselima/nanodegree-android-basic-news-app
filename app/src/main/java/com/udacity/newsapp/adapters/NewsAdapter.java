@@ -1,15 +1,10 @@
 package com.udacity.newsapp.adapters;
 
-import android.widget.ArrayAdapter;
-
-/**
- * Created by Jesse Lima on 28/05/18.
- * This is a part of the project nanodegree-android-basic-news-app.
- */
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.udacity.newsapp.R;
@@ -21,7 +16,7 @@ import java.util.List;
 /**
  * An {@link NewsAdapter} knows how to create a list item layout for each news item
  * in the data source (a list of {@link News} objects).
- *
+ * <p>
  * These list item layouts will be provided to an adapter view like ListView
  * to be displayed to the user.
  */
@@ -30,7 +25,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
     /**
      * Constructs a new {@link NewsAdapter}.
      *
-     * @param context of the app
+     * @param context  of the app
      * @param newsList is the list of news, which is the data source of the adapter
      */
     public NewsAdapter(Context context, List<News> newsList) {
@@ -39,9 +34,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     /**
      * Get a View that displays the data at the specified position in the data set.
-     * @param position is the position of each news item object in the list.
+     *
+     * @param position    is the position of each news item object in the list.
      * @param convertView is the View object the receives the inflated layout.
-     * @param parent is the ViewGroup object used by the Inflater.
+     * @param parent      is the ViewGroup object used by the Inflater.
      * @return a listItemView object represents the inflated layout filled with
      * data for each item in the list on the UI
      */
@@ -50,7 +46,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         ViewHolder viewHolder;
 
-        if (convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_list_news, parent, false);
 
             viewHolder = new ViewHolder();
@@ -62,7 +58,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
             convertView.setTag(viewHolder);
 
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
@@ -77,7 +73,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         private TextView webTitle;
         private TextView webPublicationDate;
         private TextView sectionName;

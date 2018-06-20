@@ -21,7 +21,7 @@ public final class DateUtils {
      * @param dateString is the date in a string format is this pattern yyyy-MM-dd'T'HH:mm:ss
      * @return the date as a string with this new format.
      */
-    public static String newsSimpleDateFormat(String dateString){
+    public static String newsSimpleDateFormat(String dateString) {
         String dateStringFormated = null;
         Date date;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
@@ -34,8 +34,10 @@ public final class DateUtils {
         }
         return dateStringFormated;
     }
+
     /**
      * This method receives the Date object as input parameter.
+     *
      * @param dateObject is the Date object to be formated.
      * @return a String object with the date formated according to the SimpleDateFormat method pattern: HH:mm LLL dd, yyyy.
      */
@@ -52,7 +54,7 @@ public final class DateUtils {
      * @param dateString is the date in a string format is this pattern yyyy-MM-dd'T'HH:mm:ss
      * @return the date as a string with this new format.
      */
-    public static String datePickerFormat(String dateString){
+    public static String datePickerFormat(String dateString) {
         String dateStringFormated = null;
         Date date;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -65,13 +67,14 @@ public final class DateUtils {
         }
         return dateStringFormated;
     }
+
     private static String selectedDatePattern(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.ENGLISH);
         return dateFormat.format(dateObject);
     }
 
     // Return as date as a String "yyyy-DD-dd".
-    public static String buildMyDate(int year, int month, int day){
+    public static String buildMyDate(int year, int month, int day) {
 
         StringBuilder stringBuilderDate = new StringBuilder();
         stringBuilderDate.append(year);

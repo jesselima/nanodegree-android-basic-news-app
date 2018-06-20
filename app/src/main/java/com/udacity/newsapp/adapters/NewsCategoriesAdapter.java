@@ -16,7 +16,7 @@ import java.util.List;
 
 public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
 
-    public NewsCategoriesAdapter(Context context, List<NewsCategory> categoriesList){
+    public NewsCategoriesAdapter(Context context, List<NewsCategory> categoriesList) {
         super(context, 0, categoriesList);
     }
 
@@ -25,7 +25,7 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
 
         ViewHolder viewHolder;
 
-        if (convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item_categories, parent, false);
 
@@ -36,7 +36,7 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
 
             convertView.setTag(viewHolder);
 
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
@@ -48,7 +48,7 @@ public class NewsCategoriesAdapter extends ArrayAdapter<NewsCategory> {
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         private TextView sectionName;
         private ImageView imageViewSection;
     }

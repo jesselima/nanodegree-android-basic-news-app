@@ -30,7 +30,7 @@ import java.util.Objects;
 
 
 public class NewsListActivity extends AppCompatActivity
-        implements LoaderCallbacks<List<News>>{
+        implements LoaderCallbacks<List<News>> {
 
     private static final String LOG_TAG = NewsListActivity.class.getName();
 
@@ -90,13 +90,13 @@ public class NewsListActivity extends AppCompatActivity
         newsListView = findViewById(R.id.list);
 
         /* CHECK INTENT DATA*/
-        if( getIntent().getExtras() != null) {
+        if (getIntent().getExtras() != null) {
             Bundle newsData = getIntent().getExtras();
-            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "category")){
+            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "category")) {
                 searchType = newsData.getString(CONST_SEARCH_TYPE_KEY);
                 sectionId = newsData.getString("sectionId");
             }
-            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "advanced")){
+            if (Objects.equals(newsData.getString(CONST_SEARCH_TYPE_KEY), "advanced")) {
                 searchType = newsData.getString(CONST_SEARCH_TYPE_KEY);
                 orderBy = newsData.getString(CONST_ORDER_BY_KEY);
                 fromDate = newsData.getString(CONST_FROM_DATE_KEY);
@@ -109,7 +109,7 @@ public class NewsListActivity extends AppCompatActivity
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.button_nav_top_50:
                         Intent intentNews = new Intent(getApplicationContext(), NewsListActivity.class);
                         startActivity(intentNews);
@@ -134,11 +134,11 @@ public class NewsListActivity extends AppCompatActivity
         });
 
         // Check the internet connection before to call the Loader.
-        if (!checkInternetConnection()){
+        if (!checkInternetConnection()) {
             hideLoadingIndicator();
             hideNoResultsWarning();
             showConnectionWarning();
-        }else{
+        } else {
             android.app.LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         }
@@ -154,26 +154,27 @@ public class NewsListActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // When user clicks in a item list the internet connection is checked first.
                 // If there is connection allows redirect to web browser.
-                if (!checkInternetConnection()){
+                if (!checkInternetConnection()) {
                     doToast(getString(R.string.check_your_connection));
-                }else {
+                } else {
                     News newsItem = newsAdapter.getItem(position);
                     String id = newsItem.getId();
-                    String BASE_WEB_URL =  MyApiKey.getBaseWebUrlNews();
+                    String BASE_WEB_URL = MyApiKey.getBaseWebUrlNews();
                     String webUrl = BASE_WEB_URL + id;
                     openWebPage(webUrl);
                 }
             }
         });
 
-    /* Close onCreate */
+        /* Close onCreate */
     }
 
     /**
      * When a item list is clicked the news item will be shown on the device browser.
+     *
      * @param url is Web Url of the news item.
      */
-    private void openWebPage(String url){
+    private void openWebPage(String url) {
         Uri uriWebPage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uriWebPage);
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -182,17 +183,17 @@ public class NewsListActivity extends AppCompatActivity
     }
 
     /* Pagination forward control */
-    private void paginationForward(){
+    private void paginationForward() {
         /* Check if there is connection before move to the next page */
-        if (!checkInternetConnection()){
+        if (!checkInternetConnection()) {
             doToast(getString(R.string.check_your_connection));
-        /* Check is the next of news is empty and if the current list has less than 30 news (default page-size). So there is no need to load more pages */
-        }else if (isNewsListEmpty || pageNumber < 30){
+            /* Check is the next of news is empty and if the current list has less than 30 news (default page-size). So there is no need to load more pages */
+        } else if (isNewsListEmpty || pageNumber < 30) {
             hideListView();
             showNoResultsWarning();
             textViewNoResultsFound.setText(R.string.no_more_news_in_this_list);
             doToast(getString(R.string.no_more_news));
-        }else {
+        } else {
             pageNumber = Integer.parseInt(String.valueOf(page));
             pageNumber++;
             page = String.valueOf(pageNumber);
@@ -201,21 +202,22 @@ public class NewsListActivity extends AppCompatActivity
         }
 
     }
+
     /* Pagination backward control */
-    private void paginationBackward(){
+    private void paginationBackward() {
         /* Check if there is connection before move to the previous page */
-        if (!checkInternetConnection()){
+        if (!checkInternetConnection()) {
             doToast(getString(R.string.check_your_connection));
-        }else {
+        } else {
             hideNoResultsWarning();
             showListView();
             pageNumber = Integer.parseInt(String.valueOf(page));
-            if (!checkInternetConnection()){
+            if (!checkInternetConnection()) {
                 doToast(getString(R.string.check_your_connection));
-            }else if (pageNumber == 1){
+            } else if (pageNumber == 1) {
                 page = String.valueOf(pageNumber);
                 doToast(getString(R.string.warning_you_are_at_page_one));
-            }else {
+            } else {
                 pageNumber--;
                 page = String.valueOf(pageNumber);
                 restartLoaderNews();
@@ -226,10 +228,11 @@ public class NewsListActivity extends AppCompatActivity
 
     /**
      * Thia method makes the reuse of toast object to avoid toasts queue
+     *
      * @param string is the text you want to show in the toast
      */
-    private void doToast(String string){
-        if (toast != null){
+    private void doToast(String string) {
+        if (toast != null) {
             toast.cancel();
         }
         toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
@@ -238,7 +241,7 @@ public class NewsListActivity extends AppCompatActivity
 
     /* Methods for LoaderCallbacks<List<News>> */
 
-    private void restartLoaderNews(){
+    private void restartLoaderNews() {
         // Clear the ListView as a new query will be kicked off
         newsAdapter.clear();
         // Show the loading indicator while new data is being fetched
@@ -248,13 +251,13 @@ public class NewsListActivity extends AppCompatActivity
     }
 
     /**
-    * Build the query string and return a NewsLoader object with the URI and the context.
-    */
+     * Build the query string and return a NewsLoader object with the URI and the context.
+     */
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
-        String API_KEY =  MyApiKey.getApiKey();
-        String BASE_URL =  MyApiKey.getBaseUrl();
+        String API_KEY = MyApiKey.getApiKey();
+        String BASE_URL = MyApiKey.getBaseUrl();
 
         Uri baseUri = Uri.parse(BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
@@ -300,7 +303,8 @@ public class NewsListActivity extends AppCompatActivity
      * Take action when the loader finishes its task. Hide the loading indicator and add
      * the list of news do the {@link NewsAdapter} object. But is the list of news is empty
      * show a text message in the UI.
-     * @param loader is the {@link NewsLoader} object
+     *
+     * @param loader   is the {@link NewsLoader} object
      * @param newsList is the list of news.
      */
     @Override
@@ -309,7 +313,7 @@ public class NewsListActivity extends AppCompatActivity
         hideLoadingIndicator();
         hideConnectionWarning();
 
-        if (newsList == null || newsList.isEmpty()){
+        if (newsList == null || newsList.isEmpty()) {
             isNewsListEmpty = true;
         }
 
@@ -324,16 +328,17 @@ public class NewsListActivity extends AppCompatActivity
             hideConnectionWarning();
             // Add the list of news to the Adapter object
             newsAdapter.addAll(newsList);
-        }else if(!checkInternetConnection()){
+        } else if (!checkInternetConnection()) {
             // If the news list is null or empty, hides the ListView and shows "no results found" warning in the UI.
             showConnectionWarning();
-        }else {
+        } else {
             showNoResultsWarning();
         }
     }
 
     /**
      * When the loader is reset, its clear the adapter for a better performance.
+     *
      * @param loader is the loader of the list of news
      */
     @Override
@@ -346,7 +351,7 @@ public class NewsListActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         newsAdapter.clear();
-        if (!checkInternetConnection()){
+        if (!checkInternetConnection()) {
             hideLoadingIndicator();
             hideNoResultsWarning();
             showConnectionWarning();
@@ -356,7 +361,7 @@ public class NewsListActivity extends AppCompatActivity
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (!checkInternetConnection()){
+        if (!checkInternetConnection()) {
             getLoaderManager().destroyLoader(NEWS_LOADER_ID);
         }
     }
@@ -365,40 +370,48 @@ public class NewsListActivity extends AppCompatActivity
 
     /**
      * This method when called che
+     *
      * @return a boolean true if there is internet connection.
      */
-    public boolean checkInternetConnection(){
+    public boolean checkInternetConnection() {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    private void showLoadingIndicator(){
+    private void showLoadingIndicator() {
         loadingIndicator.setVisibility(View.VISIBLE);
     }
-    private void hideLoadingIndicator(){
+
+    private void hideLoadingIndicator() {
         loadingIndicator.setVisibility(View.GONE);
     }
-    private void showListView(){
+
+    private void showListView() {
         newsListView.setVisibility(View.VISIBLE);
     }
-    private void hideListView(){
+
+    private void hideListView() {
         newsListView.setVisibility(View.GONE);
     }
-    private void showConnectionWarning(){
+
+    private void showConnectionWarning() {
         imageViewNoInternetConnection.setVisibility(View.VISIBLE);
         textViewNoInternetConnection.setVisibility(View.VISIBLE);
     }
-    private void hideConnectionWarning(){
+
+    private void hideConnectionWarning() {
         imageViewNoInternetConnection.setVisibility(View.GONE);
         textViewNoInternetConnection.setVisibility(View.GONE);
     }
-    private void showNoResultsWarning(){
+
+    private void showNoResultsWarning() {
         textViewNoResultsFound.setVisibility(View.VISIBLE);
         imageViewNoResultsFound.setVisibility(View.VISIBLE);
     }
-    private void hideNoResultsWarning(){
+
+    private void hideNoResultsWarning() {
         textViewNoResultsFound.setVisibility(View.GONE);
         imageViewNoResultsFound.setVisibility(View.GONE);
     }

@@ -3,7 +3,6 @@ package com.udacity.newsapp.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.udacity.newsapp.R;
 import com.udacity.newsapp.models.News;
 
 import org.json.JSONArray;
@@ -26,7 +25,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages output */
+    /**
+     * Tag for the log messages output
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
@@ -39,6 +40,7 @@ public final class QueryUtils {
 
     /**
      * Query the The Guardian News API data and return a list of {@link News} objects.
+     *
      * @param requestUrl is the URL request to the API.
      * @return a list of News.
      */
@@ -62,6 +64,7 @@ public final class QueryUtils {
 
     /**
      * Returns new URL object from the given string URL.
+     *
      * @param stringUrl is the String URl for the request
      * @return a URL object
      */
@@ -77,6 +80,7 @@ public final class QueryUtils {
 
     /**
      * Make an HTTP request to the given URL and return a String as the response.
+     *
      * @param url is the given URL object
      * @return a json in a String data type
      * @throws IOException if there is a problem during the request throw a error at the log.
@@ -125,6 +129,7 @@ public final class QueryUtils {
 
     /**
      * Convert the {@link InputStream} into a String which contains the whole JSON response from the server.
+     *
      * @param inputStream is the object that will receive streaming of bytes.
      * @return a String with the JSON data inside it.
      * @throws IOException throws a error if it happens.
@@ -206,12 +211,12 @@ public final class QueryUtils {
 
                 StringBuilder authors = new StringBuilder();
                 String currentContributor;
-                for (int t = 0; tagsArrayCurrentNews.length() > t; t++ ){
+                for (int t = 0; tagsArrayCurrentNews.length() > t; t++) {
 
                     JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
                     currentContributor = currentTagObject.getString("webTitle");
                     authors.append(currentContributor);
-                    if (t < tagsArrayCurrentNews.length() && t+1 < tagsArrayCurrentNews.length() ){
+                    if (t < tagsArrayCurrentNews.length() && t + 1 < tagsArrayCurrentNews.length()) {
                         authors.append("  |  ");
                     }
                 }

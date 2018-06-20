@@ -40,7 +40,7 @@ public class SearchActivity extends AppCompatActivity {
     private int currentDayOfMonth;
 
     /* Strings to be used in Advanced search */
-    private String q,fromDate, toDate, fullFromDateString, fullToDateString;
+    private String q, fromDate, toDate, fullFromDateString, fullToDateString;
     private String orderBy = "";
 
     private Toast toast;
@@ -86,17 +86,17 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 datePickerDialog = new DatePickerDialog(SearchActivity.this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            fullFromDateString = DateUtils.buildMyDate(year, month + 1, day);
-                            // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
-                            textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString));
-                            // Update the variable "fromDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
-                            fromDate = fullFromDateString;
-                        }
-                    }, currentYear, (currentMonth - 1), currentDayOfMonth); // Today pre selected date on date picker DIALOG.
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                                fullFromDateString = DateUtils.buildMyDate(year, month + 1, day);
+                                // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
+                                textViewFromDateSelected.setText(DateUtils.datePickerFormat(fullFromDateString));
+                                // Update the variable "fromDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
+                                fromDate = fullFromDateString;
+                            }
+                        }, currentYear, (currentMonth - 1), currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
             }
         });
@@ -109,17 +109,17 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 datePickerDialog = new DatePickerDialog(SearchActivity.this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
-                            fullToDateString = DateUtils.buildMyDate(year, month + 1, day); // set "to-date" with TODAY date.
-                            // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
-                            textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDateString));
-                            // Update the variable "toDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
-                            toDate = fullToDateString;
-                        }
-                    }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker DIALOG.
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                // DateUtils.buildMyDate returns a date as String with this pattern: "yyyy-MM-dd"
+                                fullToDateString = DateUtils.buildMyDate(year, month + 1, day); // set "to-date" with TODAY date.
+                                // DateUtils.datePickerFormat receives a date as String as "yyyy-MM-dd" and returns with the pattern:  LLL dd, yyyy
+                                textViewToDateSelected.setText(DateUtils.datePickerFormat(fullToDateString));
+                                // Update the variable "toDate" to send it to NewsListActivity when the GO (Search Action) button is clicked
+                                toDate = fullToDateString;
+                            }
+                        }, currentYear, currentMonth, currentDayOfMonth); // Today pre selected date on date picker DIALOG.
                 datePickerDialog.show();
             }
         });
@@ -133,24 +133,24 @@ public class SearchActivity extends AppCompatActivity {
                 orderBy = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
                 String searchInput = searchTerms.getText().toString();
 
-                if (!checkInternetConnection()){
+                if (!checkInternetConnection()) {
                     doToast(getString(R.string.check_your_connection));
                     return;
                 }
-                if (searchInput.isEmpty()){
+                if (searchInput.isEmpty()) {
                     doToast(getString(R.string.type_a_term));
                     return;
                 }
                 q = searchInput;
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
-                    intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
+                intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
                 Log.v("fromDate out Search", ">>>>>>>" + fromDate);
-                    intent.putExtra(CONST_TO_DATE_KEY, toDate);
-                    Log.v("toDate out Search", ">>>>>>>" + toDate);
-                    intent.putExtra(CONST_ORDER_BY_KEY, orderBy);
-                    intent.putExtra(CONST_Q_KEY, q);
-                    intent.putExtra(CONST_SEARCH_TYPE_KEY, CONST_SEARCH_TYPE_VALUE);
+                intent.putExtra(CONST_TO_DATE_KEY, toDate);
+                Log.v("toDate out Search", ">>>>>>>" + toDate);
+                intent.putExtra(CONST_ORDER_BY_KEY, orderBy);
+                intent.putExtra(CONST_Q_KEY, q);
+                intent.putExtra(CONST_SEARCH_TYPE_KEY, CONST_SEARCH_TYPE_VALUE);
                 startActivity(intent);
             }
         });
@@ -159,10 +159,11 @@ public class SearchActivity extends AppCompatActivity {
 
     /**
      * Thia method makes the reuse of toast object to avoid toasts queue
+     *
      * @param string is the text you want to show in the toast
      */
-    private void doToast(String string){
-        if (toast != null){
+    private void doToast(String string) {
+        if (toast != null) {
             toast.cancel();
         }
         toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
@@ -170,7 +171,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    public boolean checkInternetConnection(){
+    public boolean checkInternetConnection() {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

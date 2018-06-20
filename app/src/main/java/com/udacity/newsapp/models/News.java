@@ -12,7 +12,7 @@ public class News {
     private String apiURL;
     private String contributors;
 
-    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL,String apiURL, String contributors) {
+    public News(String id, String type, String sectionName, String webPublicationDate, String webTitle, String webURL, String apiURL, String contributors) {
         this.id = id;
         this.type = type;
         this.sectionName = sectionName;
