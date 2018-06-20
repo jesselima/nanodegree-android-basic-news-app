@@ -146,9 +146,7 @@ public class SearchActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), NewsListActivity.class);
                 intent.putExtra(CONST_FROM_DATE_KEY, fromDate);
-                Log.v("fromDate out Search", ">>>>>>>" + fromDate);
                 intent.putExtra(CONST_TO_DATE_KEY, toDate);
-                Log.v("toDate out Search", ">>>>>>>" + toDate);
                 intent.putExtra(CONST_ORDER_BY_KEY, orderBy);
                 intent.putExtra(CONST_Q_KEY, q);
                 intent.putExtra(CONST_SEARCH_TYPE_KEY, CONST_SEARCH_TYPE_VALUE);

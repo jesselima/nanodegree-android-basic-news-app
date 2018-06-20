@@ -71,6 +71,7 @@ public class NewsListActivity extends AppCompatActivity
     private TextView textViewNoResultsFound, textViewNoInternetConnection;
     private ImageView imageViewNoResultsFound, imageViewNoInternetConnection;
     private boolean isNewsListEmpty;
+    private int listNewsSize;
     private View loadingIndicator;
     private Toast toast;
 
@@ -189,7 +190,7 @@ public class NewsListActivity extends AppCompatActivity
         if (!checkInternetConnection()) {
             doToast(getString(R.string.check_your_connection));
             /* Check is the next of news is empty and if the current list has less than 30 news (default page-size). So there is no need to load more pages */
-        } else if (isNewsListEmpty || pageNumber < 30) {
+        } else if (isNewsListEmpty || listNewsSize < 30) {
             hideListView();
             showNoResultsWarning();
             textViewNoResultsFound.setText(R.string.no_more_news_in_this_list);
@@ -321,6 +322,7 @@ public class NewsListActivity extends AppCompatActivity
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (newsList != null && !newsList.isEmpty()) {
+            listNewsSize = newsList.size();
             // Clear the adapter object before add the new list into it.
             newsAdapter.clear();
             showListView();
