@@ -161,9 +161,7 @@ public class NewsListActivity extends AppCompatActivity
                 } else {
                     News newsItem = newsAdapter.getItem(position);
                     String newsItemWebUrl = Objects.requireNonNull(newsItem).getWebURL();
-                    String BASE_WEB_URL = MyApiKey.getBaseWebUrlNews();
-                    String webUrl = BASE_WEB_URL + newsItemWebUrl;
-                    openWebPage(webUrl);
+                    openWebPage(newsItemWebUrl);
                 }
             }
         });

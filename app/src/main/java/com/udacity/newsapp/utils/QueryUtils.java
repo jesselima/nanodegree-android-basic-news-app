@@ -105,7 +105,7 @@ public final class QueryUtils {
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
@@ -161,11 +161,10 @@ public final class QueryUtils {
         List<News> newsList = new ArrayList<>();
 
         try {
-            // Create a JSONObject from the JSON response string
+            // Create a root JSONObject from the JSON response string
             JSONObject rootJsonObject = new JSONObject(newsJSON);
-
+            // Create a JSONObject from the response key that holds all news data if available.
             JSONObject responseObject = rootJsonObject.getJSONObject("response");
-
             // Create a JSONArray and put the array of News (results) inside it.
             JSONArray resultsArray = responseObject.getJSONArray("results");
 
@@ -175,46 +174,21 @@ public final class QueryUtils {
 
                 // Get a single News object in the newsArray (in within the list of News)
                 JSONObject currentNewsResult = resultsArray.getJSONObject(i);
+                // Get all contributors inside the array with the key "tags".
                 JSONArray tagsArrayCurrentNews = currentNewsResult.getJSONArray("tags");
 
-                String id = currentNewsResult.getString("id");
-
-                String type = "";
-                if (currentNewsResult.has("type")) {
-                    type = currentNewsResult.getString("type");
-                }
-
-                String sectionName = "";
-                if (currentNewsResult.has("sectionName")) {
-                    sectionName = currentNewsResult.getString("sectionName");
-                }
-
-                String webPublicationDate = "";
-                if (currentNewsResult.has("webPublicationDate")) {
-                    webPublicationDate = currentNewsResult.getString("webPublicationDate");
-                }
-
-                String webTitle = "";
-                if (currentNewsResult.has("webTitle")) {
-                    webTitle = currentNewsResult.getString("webTitle");
-                }
-
-                String webURL = "";
-                if (currentNewsResult.has("webURL")) {
-                    webURL = currentNewsResult.getString("webURL");
-                }
-
-                String apiURL = "";
-                if (currentNewsResult.has("apiURL")) {
-                    apiURL = currentNewsResult.getString("apiURL");
-                }
+                String id = currentNewsResult.optString("id");
+                String type = currentNewsResult.optString("type");
+                String sectionName = currentNewsResult.optString("sectionName");
+                String webPublicationDate = currentNewsResult.optString("webPublicationDate");
+                String webTitle = currentNewsResult.optString("webTitle");
+                String webURL = currentNewsResult.optString("webUrl");
 
                 StringBuilder authors = new StringBuilder();
                 String currentContributor;
                 for (int t = 0; tagsArrayCurrentNews.length() > t; t++) {
-
                     JSONObject currentTagObject = tagsArrayCurrentNews.getJSONObject(t);
-                    currentContributor = currentTagObject.getString("webTitle");
+                    currentContributor = currentTagObject.optString("webTitle");
                     authors.append(currentContributor);
                     if (t < tagsArrayCurrentNews.length() && t + 1 < tagsArrayCurrentNews.length()) {
                         authors.append("  |  ");
