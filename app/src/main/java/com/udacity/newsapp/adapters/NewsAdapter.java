@@ -47,12 +47,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
-        ViewHolder viewHolder;
+        NewsItemViewHolder viewHolder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_list_news, parent, false);
 
-            viewHolder = new ViewHolder();
+            viewHolder = new NewsItemViewHolder();
 
             viewHolder.webTitle = convertView.findViewById(R.id.text_view_web_title);
             viewHolder.webPublicationDate = convertView.findViewById(R.id.text_view_publication_date);
@@ -62,7 +62,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
             convertView.setTag(viewHolder);
 
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (NewsItemViewHolder) convertView.getTag();
         }
 
         News currentNews = getItem(position);
@@ -76,7 +76,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         return convertView;
     }
 
-    private class ViewHolder {
+    private class NewsItemViewHolder {
         private TextView webTitle;
         private TextView webPublicationDate;
         private TextView sectionName;
